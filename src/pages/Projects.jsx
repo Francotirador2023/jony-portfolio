@@ -33,11 +33,21 @@ const ProjectCard = ({ title, description, tags, link, github, type }) => (
             </div>
 
             <div className="flex items-center gap-4 pt-4 border-t border-white/5">
-                <a href={github} className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+                <a
+                    href={github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                >
                     <Github className="w-4 h-4" /> Código
                 </a>
                 {link && (
-                    <a href={link} className="flex items-center gap-2 text-sm text-primary-400 hover:text-primary-300 transition-colors ml-auto">
+                    <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-primary-400 hover:text-primary-300 transition-colors ml-auto"
+                    >
                         Ver Demo <ExternalLink className="w-4 h-4" />
                     </a>
                 )}
@@ -54,7 +64,7 @@ const Projects = () => {
             type: "Data Engineering",
             description: "Scripts en Python para la limpieza, transformación y carga automática de grandes volúmenes de datos. Optimización de flujos de trabajo repetitivos reduciendo tiempos de procesamiento.",
             tags: ["Python", "SQL", "Pandas", "Automation"],
-            github: "#"
+            github: "https://github.com/Francotirador2023/etl-sales-pipeline"
         },
         {
             title: "Dashboard de Gestión Veterinaria",
