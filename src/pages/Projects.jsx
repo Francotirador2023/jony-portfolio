@@ -1,15 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Folder } from 'lucide-react';
+import etlBanner from '../assets/etl_banner.png';
+import biDashboard from '../assets/bi_dashboard.png';
+import mdsBanner from '../assets/mds_banner.png';
 
-const ProjectCard = ({ title, description, tags, link, github, type }) => (
+const ProjectCard = ({ title, description, tags, link, github, type, image }) => (
     <div className="bg-dark-card rounded-xl overflow-hidden border border-white/5 hover:border-primary-500/50 transition-all duration-300 group hover:-translate-y-2">
-        <div className="h-48 bg-gradient-to-br from-gray-800 to-gray-900 relative p-6 flex flex-col justify-end">
-            {/* Abstract presentation for Data Projects if no image */}
-            <div className="absolute top-4 right-4 p-2 bg-black/30 rounded-lg backdrop-blur text-primary-400">
-                <Folder className="w-6 h-6" />
-            </div>
-            <div className="absolute inset-0 bg-primary-600/10 group-hover:bg-primary-600/20 transition-colors" />
+        <div className="h-48 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden group-hover:brightness-110 transition-all">
+            {/* Image or Abstract presentation */}
+            {image ? (
+                <img
+                    src={image}
+                    alt={title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
+            ) : (
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                    <div className="absolute top-4 right-4 p-2 bg-black/30 rounded-lg backdrop-blur text-primary-400">
+                        <Folder className="w-6 h-6" />
+                    </div>
+                </div>
+            )}
+            <div className="absolute inset-0 bg-primary-600/10 group-hover:bg-primary-600/0 transition-colors" />
         </div>
 
         <div className="p-6">
@@ -64,21 +77,24 @@ const Projects = () => {
             type: "Data Engineering",
             description: "Scripts en Python para la limpieza, transformación y carga automática de grandes volúmenes de datos. Optimización de flujos de trabajo repetitivos reduciendo tiempos de procesamiento.",
             tags: ["Python", "SQL", "Pandas", "Automation"],
-            github: "https://github.com/Francotirador2023/etl-sales-pipeline"
+            github: "https://github.com/Francotirador2023/etl-sales-pipeline",
+            image: etlBanner
         },
         {
             title: "Dashboard de Gestión Veterinaria",
             type: "Business Intelligence",
             description: "Dashboard integral en Power BI para análisis de ventas y servicios. Incluye procesos ETL con Power Query, modelado de datos en estrella y métricas DAX avanzadas para identificar tendencias y optimizar el rendimiento.",
             tags: ["Power BI", "DAX", "ETL", "Data Modeling"],
-            github: "https://github.com/Francotirador2023/bi-dashboards"
+            github: "https://github.com/Francotirador2023/bi-dashboards",
+            image: biDashboard
         },
         {
             title: "Modern Data Stack (Crypto ETL)",
             type: "Data Engineering & Cloud",
             description: "Pipeline ELT completo orquestado con Airflow en Docker. Extracción de API de criptomonedas, Data Warehouse en Postgres y transformación analítica con dBT. Visualización de tendencias en Metabase.",
             tags: ["Airflow", "Docker", "dBT", "Postgres", "Metabase"],
-            github: "https://github.com/Francotirador2023/modern-data-stack"
+            github: "https://github.com/Francotirador2023/modern-data-stack",
+            image: mdsBanner
         }
     ];
 
