@@ -4,6 +4,7 @@ import { Github, ExternalLink, Folder } from 'lucide-react';
 import etlBanner from '../assets/etl_banner.png';
 import biDashboard from '../assets/bi_dashboard.png';
 import mdsBanner from '../assets/mds_banner.png';
+import mlopsBanner from '../assets/mlops_banner.png';
 
 const ProjectCard = ({ title, description, tags, link, github, type, image }) => (
     <div className="bg-dark-card rounded-xl overflow-hidden border border-white/5 hover:border-primary-500/50 transition-all duration-300 group hover:-translate-y-2">
@@ -95,6 +96,14 @@ const Projects = () => {
             tags: ["Airflow", "Docker", "dBT", "Postgres", "Metabase"],
             github: "https://github.com/Francotirador2023/modern-data-stack",
             image: mdsBanner
+        },
+        {
+            title: "MLOps: Predictor de Precios de Viviendas",
+            type: "Machine Learning Engineering",
+            description: "Pipeline End-to-End para predicción de precios inmobiliarios. Entrenamiento con Scikit-Learn, API productiva con FastAPI y validación Pydantic. Todo dockerizado y servido mediante Dashboard interactivo en Streamlit.",
+            tags: ["Python", "FastAPI", "Docker", "Streamlit", "Scikit-Learn"],
+            github: "https://github.com/Francotirador2023/mlops-price-predictor.",
+            image: mlopsBanner
         }
     ];
 
