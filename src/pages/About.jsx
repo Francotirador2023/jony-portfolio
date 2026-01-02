@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Database, Server, Cloud, Code, Terminal, BarChart } from 'lucide-react';
+import { Database, Server, Cloud, Code, Terminal, BarChart, Brain } from 'lucide-react';
 
 const SkillCard = ({ icon: Icon, title, skills }) => (
     <div className="bg-dark-card p-6 rounded-xl border border-white/5 hover:border-primary-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/10 group">
@@ -22,18 +22,23 @@ const About = () => {
     const skillCategories = [
         {
             icon: Code,
-            title: "Lenguajes",
-            skills: ["Python", "SQL", "Java"]
+            title: "Lenguajes & Backend",
+            skills: ["Python", "SQL", "Java", "FastAPI"]
         },
         {
             icon: Terminal,
-            title: "Big Data & Herramientas",
-            skills: ["Apache Spark", "Hadoop", "Docker", "Jenkins", "Git"]
+            title: "Data Engineering",
+            skills: ["Apache Spark", "Airflow", "dBT", "Docker", "Hadoop"]
+        },
+        {
+            icon: Brain,
+            title: "Data Science & MLOps",
+            skills: ["Scikit-Learn", "Pandas", "NumPy", "MLOps", "Git"]
         },
         {
             icon: Database,
             title: "Bases de Datos",
-            skills: ["MySQL", "PostgreSQL", "MongoDB"]
+            skills: ["PostgreSQL", "MySQL", "MongoDB"]
         },
         {
             icon: Cloud,
@@ -43,7 +48,7 @@ const About = () => {
         {
             icon: BarChart,
             title: "Visualización & BI",
-            skills: ["Power BI", "Tableau"]
+            skills: ["Power BI", "Tableau", "Streamlit", "Metabase"]
         }
     ];
 
