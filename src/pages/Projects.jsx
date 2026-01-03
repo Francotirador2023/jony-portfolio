@@ -102,7 +102,7 @@ const Projects = () => {
             type: "Machine Learning Engineering",
             description: "Pipeline End-to-End para predicción de precios inmobiliarios. Entrenamiento con Scikit-Learn, API productiva con FastAPI y validación Pydantic. Todo dockerizado y servido mediante Dashboard interactivo en Streamlit.",
             tags: ["Python", "FastAPI", "Docker", "Streamlit", "Scikit-Learn"],
-            github: "https://github.com/Francotirador2023/mlops-price-predictor.",
+            github: "https://github.com/Francotirador2023/mlops-price-predictor",
             image: mlopsBanner
         }
     ];
