@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Briefcase, GraduationCap, Calendar } from 'lucide-react';
 
 const TimelineItem = ({ title, organization, date, type, description, isLast }) => (
-    <div className="relative pl-8 md:pl-0 md:grid md:grid-cols-5 md:gap-10 group">
+    <div className="relative pl-8 md:pl-0 md:grid md:grid-cols-2 md:gap-10 group">
         {/* Line */}
         {!isLast && (
             <div className="absolute top-0 left-[11px] md:left-auto md:right-[calc(50%-1px)] h-full w-[2px] bg-white/10 group-hover:bg-primary-500/50 transition-colors duration-300" />
@@ -13,7 +13,7 @@ const TimelineItem = ({ title, organization, date, type, description, isLast }) 
         <div className="absolute top-0 left-0 md:left-auto md:right-[calc(50%-12px)] w-6 h-6 rounded-full bg-dark-card border-2 border-primary-500 z-10 group-hover:scale-110 transition-transform duration-300" />
 
         {/* Date (Left Side on Desktop) */}
-        <div className="md:col-span-2 md:text-right mb-2 md:mb-0">
+        <div className="md:col-span-1 md:text-right mb-2 md:mb-0">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full text-sm text-primary-300 border border-white/5">
                 <Calendar className="w-3 h-3" />
                 {date}
@@ -21,7 +21,7 @@ const TimelineItem = ({ title, organization, date, type, description, isLast }) 
         </div>
 
         {/* Content (Right Side on Desktop) */}
-        <div className="md:col-span-3 pb-12">
+        <div className="md:col-span-1 pb-12">
             <div className="flex items-center gap-2 mb-2">
                 {type === 'work' ? <Briefcase className="w-5 h-5 text-primary-400" /> : <GraduationCap className="w-5 h-5 text-indigo-400" />}
                 <h3 className="text-xl font-bold text-white font-heading">{title}</h3>
