@@ -6,6 +6,8 @@ import biDashboard from '../assets/bi_dashboard.png';
 import mdsBanner from '../assets/mds_banner.png';
 import mlopsBanner from '../assets/mlops_banner.png';
 
+import heartBanner from '../assets/heart_disease_banner.png';
+
 const ProjectCard = ({ title, description, tags, link, github, type, image }) => (
     <div className="bg-dark-card rounded-xl overflow-hidden border border-white/5 hover:border-primary-500/50 transition-all duration-300 group hover:-translate-y-2">
         <div className="h-48 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden group-hover:brightness-110 transition-all">
@@ -73,6 +75,14 @@ const ProjectCard = ({ title, description, tags, link, github, type, image }) =>
 const Projects = () => {
     // Placeholder projects based on skill set
     const projects = [
+        {
+            title: "Heart Disease Clustering & Prediction System",
+            type: "Machine Learning & AI",
+            description: "Sistema híbrido de IA para triaje cardíaco. Segmentación de pacientes con K-Means (No Supervisado) y predicción de riesgo clínico con Random Forest. Análisis automatizado y simulación de diagnósticos.",
+            tags: ["Python", "Scikit-Learn", "Pandas", "K-Means", "Random Forest"],
+            github: "https://github.com/Francotirador2023/tp-final-ml",
+            image: heartBanner
+        },
         {
             title: "Automatización de Procesos ETL",
             type: "Data Engineering",
