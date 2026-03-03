@@ -1,0 +1,11 @@
+ID_Transaccion,Fecha,Cliente,Monto,Tipo,Canal,Region,Estado
+Tx10001,2024-01-15,Cli_849,1500.50,Transferencia,Web,Norte,Aprobada
+Tx10002,2024-01-15,Cli_221,-50.00,Comision,Sistema,,Aprobada
+Tx10003,NaN,Cli_114,200.00,Deposito,Cajero,Sur,Pendiente
+Tx10004,2024-02-01,Cli_849,3400.00,Transferencia,App,Norte,Rechazada
+Tx10005,2024-02-14,Cli_992,15.99,Suscripcion,Web,Centro,Aprobada
+Tx10006,2024-03-05,Cli_114,NaN,Retiro,Cajero,Sur,Aprobada
+Tx10007,2024-03-10,Cli_333,50000.00,Inversion,Sucursal,Centro,Aprobada
+Tx10008,2024-04-22,Cli_849,120.00,Pago_Servicio,App,Norte,Aprobada
+Tx10009,2024-05-30,Cli_221,800.00,Transferencia,Web,Este,Rechazada
+Tx10010,2024-06-12,Cli_992,-15.99,Comision,Sistema,Centro,Aprobada

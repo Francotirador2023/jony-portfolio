@@ -1,40 +1,69 @@
 import React, { useState } from 'react';
 import { Menu, X, Code, Terminal, Database } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
 
     const navLinks = [
-        { title: 'Sobre Mí', href: '#about' },
-        { title: 'Habilidades', href: '#skills' },
-        { title: 'Experiencia', href: '#experience' },
-        { title: 'Proyectos', href: '#projects' },
-        { title: 'Contacto', href: '#contact' },
+        { title: 'Sobre Mí', href: '/#about' },
+        { title: 'Habilidades', href: '/#skills' },
+        { title: 'Experiencia', href: '/#experience' },
+        { title: 'Proyectos', href: '/#projects' },
+        { title: 'Cursos', href: '/cursos', isSpecial: true },
+        { title: 'Contacto', href: '/#contact' },
     ];
+
+    const isHomePage = location.pathname === '/';
+
+    const handleLogoClick = () => {
+        if (isHomePage) {
+            window.scrollTo(0, 0);
+        }
+    };
 
     return (
         <nav className="fixed w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-white/10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
-                    <div className="flex-shrink-0 flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
+                    <Link to="/" onClick={handleLogoClick} className="flex-shrink-0 flex items-center space-x-2 cursor-pointer">
                         <div className="bg-gradient-to-tr from-primary-500 to-indigo-600 p-2 rounded-lg">
                             <Code className="h-6 w-6 text-white" />
                         </div>
                         <span className="font-heading font-bold text-xl text-white">Jony<span className="text-primary-400">.Dev</span></span>
-                    </div>
+                    </Link>
 
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-8">
-                            {navLinks.map((link) => (
-                                <a
-                                    key={link.title}
-                                    href={link.href}
-                                    className="text-gray-300 hover:text-primary-400 hover:bg-white/5 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300"
-                                >
-                                    {link.title}
-                                </a>
-                            ))}
+                            {navLinks.map((link) => {
+                                if (link.href.startsWith('/#')) {
+                                    return (
+                                        <HashLink
+                                            key={link.title}
+                                            smooth
+                                            to={link.href}
+                                            className="text-gray-300 hover:text-primary-400 hover:bg-white/5 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300"
+                                        >
+                                            {link.title}
+                                        </HashLink>
+                                    );
+                                }
+                                return (
+                                    <Link
+                                        key={link.title}
+                                        to={link.href}
+                                        className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${link.isSpecial
+                                                ? 'text-primary-400 border border-primary-500/30 bg-primary-500/10 hover:bg-primary-500/20'
+                                                : 'text-gray-300 hover:text-primary-400 hover:bg-white/5'
+                                            }`}
+                                    >
+                                        {link.title}
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
 
@@ -57,16 +86,34 @@ const Navbar = () => {
                     className="md:hidden bg-dark-card border-b border-white/10"
                 >
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.title}
-                                href={link.href}
-                                className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-2 rounded-md text-base font-medium"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                {link.title}
-                            </a>
-                        ))}
+                        {navLinks.map((link) => {
+                            if (link.href.startsWith('/#')) {
+                                return (
+                                    <HashLink
+                                        key={link.title}
+                                        smooth
+                                        to={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-2 rounded-md text-base font-medium"
+                                    >
+                                        {link.title}
+                                    </HashLink>
+                                );
+                            }
+                            return (
+                                <Link
+                                    key={link.title}
+                                    to={link.href}
+                                    onClick={() => setIsOpen(false)}
+                                    className={`block px-3 py-2 rounded-md text-base font-medium ${link.isSpecial
+                                            ? 'text-primary-400 border border-primary-500/30 bg-primary-500/10'
+                                            : 'text-gray-300 hover:text-white hover:bg-white/5'
+                                        }`}
+                                >
+                                    {link.title}
+                                </Link>
+                            );
+                        })}
                     </div>
                 </motion.div>
             )}
