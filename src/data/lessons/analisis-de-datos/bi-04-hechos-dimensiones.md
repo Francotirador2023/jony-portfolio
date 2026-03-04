@@ -1,27 +1,26 @@
-# Modelado: Hechos vs Dimensiones
+# 🎲 Power BI: Hechos vs Dimensiones
 
-Cuando brincamos del "Excel plano" (donde todo está en una sola sábana gorda inmensa de datos) hacia **Power BI** o el **Data Warehousing**, descubrimos la peor práctica: La redundancia masiva.
+Cuando abandonamos el "Excel Normal" (donde guardas todo amontonado en una hoja) y saltamos a **Power BI** para hacer Dashboards legendarios, descubrimos que tu PC puede colapsar si guardas la misma palabra 5 millones de veces.
 
-Imagina tener en cada fila el Nombre Completo y Edad del Cliente por cada paquete de chicle que compra. Tu computadora se congelará antes de llegar a los 10 millones de tickets.
+Imagina guardar en *cada fila* el "Nombre Completo del Jugador, y de qué País es" por CADA bala que dispara en un Battle Royale. El peso del archivo sería monstruoso.
 
-Para eso nació el padre de todo análisis moderno corporativo: **La Inteligencia de Negocios (Business Intelligence)** estructurada mediante modelos de tablas separadas.
+Para eso nació la regla de oro corporativa: **Dividir para Gobernar (Modelado Dimensional)**. Separamos la base de datos en dos grandes tipos de tablas.
 
-## Las Dos Chicas de la Fiesta
+## 🛡️ Las Dos Clases del Juego
 
-En cualquier empresa constructora de tableros, sus datos siempre caerán en una de estas dos categorías irremediablemente:
+Todo buen tablero de Power BI está formado por la unión de estas dos tablas:
 
-### 1. Tablas de HECHOS (Fact Tables)
-Son los eventos del negocio. Lo que ocurre segundo a segundo, en enormes volúmenes. Todo lo medible y sumable.
-- Ejemplos: `Ventas`, `Clicks_en_Web`, `Movimientos_Bancarios`, `Asistencias_RRHH`.
-- **Anatomía:** Están repletas de números horribles, fechas, montos, cantidades, y cientos de `IDs` (Identity Keys). **Jamás** verás un nombre propio como "Juan Pérez" aquí. Verás `ClienteID = 14`.
+### 1. Tablas de HECHOS (El Historial de Partidas)
+Son los eventos puros. Lo que pasa rápido, sin parar y produce millones de filas de información (Ej: `Ventas`, `Kills`, `Daño`, `Logins`).
+- **Aspecto Visual:** Son horribles de leer siendo humano. Tienen fechas puras, muchos números matemáticos y cientos de Códigos `ID` indescifrables. **Jamás** verás escrito "Juan" o "Pistola". Verás algo como `Jugador_ID = 455`, `Arma_ID = 12`.
 
-### 2. Tablas de DIMENSIONES (Dimension Tables)
-Dan el **contexto** histórico o textual a los Hechos. Responden ¿Quién, Cómo, Cuándo, Dónde?. Tienen mucha información descriptiva, pocos registros totales y son "bajitas pero gordas".
-- Ejemplos: `Clientes`, `Productos`, `Tiendas`, `Calendario`.
-- **Anatomía:** No tienen ventas ni números de transacciones. Está el Padrón. Tienen muchísimas columnas descriptivas por fila. Si el `ClienteID 14` aparece un millón de veces en Hechos (una por compra); en la tabla Cliente aparecerá **una sola vez**.
+### 2. Tablas de DIMENSIONES (La Wiki del Juego)
+Son las tablas que dan **contexto textual**. Responden: *¿Quién?, ¿Cómo?, ¿Dónde?*. (Ej: `Tabla_Armas`, `Tabla_Jugadores`, `Calendario`).
+- **Aspecto Visual:** Tienen poquitas filas pero mucha información por fila. Aquí SÍ está escrito "Pistola", su rareza, su color, y el daño base. Si el `Jugador 455` mató a un millón de bots, aparecerá 1 millón de veces en "Hechos", pero en la dimensión "Jugadores" solo existirá **una única vez** en toda la matriz.
 
-## La Magia Dimensional
+## 🔗 La Magia de los Cables (Relaciones)
 
-Cuando creas una línea/hilo desde el `ClienteID` de la Dimensión `Clientes`, arrastrándola hasta engancharla con el `ClienteID` de la tabla de Hechos `Ventas` *(en tu panel de Relaciones de Power BI/Excel)*, acabas de lograr lo imposible.
+Cuando entras a la vista de Modelo en Power BI, ves cajas (Tablas). 
+Si arrastras una línea invisible desde el `Jugador_ID` de *(La Dimensión Jugadores)* y lo unes al `Jugador_ID` de *(Hechos Partidas)*... acabas de iluminar la base de datos.
 
-Le diste luz y **contexto cruzado**. Ahora puedes crear una gráfica, y en el eje Y jalar `Suma_de_Pesos` de Hechos_Ventas, y para el nombre de las barras, jalar alegremente la columna `Nombre_Ciudad` de la Dimensión_Tienda, todo conectado a través de las llaves.
+Le diste la habilidad a Power BI de **Cruzar Contexto**. Ahora puedes arrastrar a tu Dashboard la suma de "Kills" de una tabla, y separarla por "El País del Jugador" de la otra tabla, y los gráficos cobrarán vida solitos porque ahora ambas matrices hablan el mismo idioma.

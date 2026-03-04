@@ -1,67 +1,70 @@
-# Funciones de Transformación (Cadenas y Fechas)
+# ✂️ Limpieza de Datos (Cadenas y Fechas)
 
-Hasta ahora hemos extraído la información tal como está guardada. Pero como analista, gran parte de tu labor diaria será "Transformar y Limpiar" esa información a medida que la consultas. Las bases de datos tienen cientos de funciones para ello. Veremos las más vitales.
+Sacar información pura está genial, pero como analista (o Moderador del Juego), muchas veces la data llega sucia o desordenada. Los usuarios escriben combinando MAYÚSCULAS con minúsculas y los servidores combinan regiones en formatos raros. 
 
-## 1. Manipulación de Cadenas de Texto (Strings)
+SQL tiene "herramientas de limpieza" súper eficaces.
 
-### Reemplazo Parcial (`UPPER`, `LOWER`)
-Forzar que el texto aparezca en Máyuscula o Minúscula. Útil en `WHERE` para evitar fallos si el usuario escribió mezclado "juAn".
+## 1. Manipulando Texto al Instante (Strings)
+
+### Gritos y Silencios (`UPPER`, `LOWER`)
+Para forzar que un texto se lea en mayúsculas (como si estuvieran gritando en el chat) o en minúsculas. Súper vital en el `WHERE` para que tu buscador no falle si el pro-player se escribe "fAkEr" o "Faker".
 
 ```sql
-SELECT UPPER(Nombre) AS Nombre_Mayuscula 
-FROM Clientes;
+-- Pasamos todos los insultos reportados en el chat a minúscula para analizarlos mejor
+SELECT LOWER(Log_Mensaje) AS Chat_Normalizado 
+FROM Reportes_Chat;
 ```
 
-### Unir columnas (`CONCAT`)
-Juntar texto.
+### Fusión Tribal (`CONCAT`)
+Cuando quieres unir dos columnas separadas en una sola para que se vea más pro en el dashboard.
 
 ```sql
-SELECT CONCAT(Nombre, ' ', Apellido) AS Nombre_Completo 
-FROM Empleados;
+-- Unir el tag del clan con el nickname: "[FaZe] Jony"
+SELECT CONCAT('[', Clan_Tag, '] ', GamerTag) AS Nombre_Completo 
+FROM Perfiles;
 
--- Nota: En Postgres y SQL Server modernos suele preferirse el operador `||`
-SELECT Nombre || ' ' || Apellido AS Completo FROM Empleados;
+-- Nota: En muchos motores (como Postgres) es más rápido usar las barras `||`
+SELECT '[' || Clan_Tag || '] ' || GamerTag AS Ingame_Name FROM Perfiles;
 ```
 
-### Extraer partes de un texto (`SUBSTRING` o `LEFT`/`RIGHT`)
-A veces el texto viene sucio (ej: Un código de producto `PRD-12345`). Y queremos extraer la segunda parte.
+### El Bisturí (`SUBSTRING` o `LEFT`/`RIGHT`)
+A veces no quieres todo el texto. Por ejemplo, los ID de tu servidor vienen como `EU-West01` o `NA-East99`, y tú solo quieres la región.
 
 ```sql
--- Queremos extraer los primeros 3 caracteres desde la izquierda
-SELECT LEFT(Codigo_Producto, 3) AS Categoria 
-FROM Inventario;
+-- Extrae solo los primeros 2 caracteres desde la izquierda (EU, NA)
+SELECT LEFT(Server_ID, 2) AS Region_Global 
+FROM Match_History;
 
--- Con SUBSTRING le decimos: Inicia desde el caracter 3, y extrae los próximos 5.
-SELECT SUBSTRING(Email, 3, 5) 
-FROM Usuarios;
+-- SUBSTRING es más top: "Inicia a cortar en la letra 4, y dame los próximos 4 caracteres"
+SELECT SUBSTRING(Email_Recuperacion, 1, 5) 
+FROM Cuentas_Hackeadas;
 ```
 
-## 2. Manipulando la variable del Tiempo (Fechas)
+## 2. Los Viajes en el Tiempo (Fechas)
 
-El formato maestro de fecha en bases relacionales es siempre el universal: `YYYY-MM-DD` (Ej: 2026-06-15).
+El formato universal de fechas que respetan todas las bases del mundo gaming es: `YYYY-MM-DD` (Ej: 2026-10-31).
 
-### Obtener la fecha de Hoy
+### ¿Qué día es hoy en el server? (`CURRENT_DATE`)
 
-Si quieres ver todo lo vendido en el día que ejecutaste la consulta:
+Ideal para ver quién compró el pase de batalla "HOY".
 ```sql
-SELECT * FROM Ventas 
-WHERE Fecha = CURRENT_DATE; 
--- (Nota: Para MS SQL Server la función usaría GETDATE())
+SELECT GamerTag, Monto_Gastado 
+FROM Tienda_Virtual 
+WHERE Fecha_Compra = CURRENT_DATE; 
+-- (Si usas Microsoft SQL Server, el hechizo es GETDATE())
 ```
 
-### Extracción de partes (`EXTRACT` o `DATEPART`)
+### Extracción Quirúrgica del Tiempo (`EXTRACT`)
 
-Es tu mejor amigo para agrupar reportes "Mes a Mes" o "Año a Año".
+¿Quieres saber en qué mes hay más jugadores conectados históricamente? Sácale solo el "AÑO" o "MES" a una fecha completa.
 
 ```sql
--- Queremos agrupar todas las ventas de la empresa y saber cuánto ganamos cada Año fiscal.
+-- Sacamos solo el AÑO de las compras y sumamos el dinero que ganamos agrupado por ese Año.
 SELECT 
-    EXTRACT(YEAR FROM Fecha_Venta) AS Anio,
-    SUM(Monto) AS Ingresos
-FROM Ventas
-GROUP BY EXTRACT(YEAR FROM Fecha_Venta);
-
--- Nota: En MS SQL Server el comando sería DATEPART(yyyy, Fecha_Venta) o la función especial YEAR()
+    EXTRACT(YEAR FROM Fecha_Registro) AS Anio_Beta,
+    COUNT(*) AS Nuevos_Jugadores
+FROM Usuarios
+GROUP BY EXTRACT(YEAR FROM Fecha_Registro);
 ```
 
-Estas transformaciones aseguran que puedas obtener dashboards impresionantes sin requerir usar macros en Excel una vez descargas la data. En el siguiente gran módulo final, entraremos a las canchas grandes: ¡combinaremos tablas!
+¡Dominar esto es la diferencia entre un analista junior y alguien que lidera los dashboards de Twitch o Netflix! En el siguiente módulo entraremos a las Ligas Mayores: Aprenderemos a fusionar tablas con los poderosos **JOINS**.

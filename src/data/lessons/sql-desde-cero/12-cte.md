@@ -1,56 +1,58 @@
-# CTEs (Common Table Expressions)
+# 🏗️ CTEs (Creando tu Loadout Inicial)
 
-Si en la lección pasada vimos que las subconsultas pueden ser difíciles de leer para ti o tus colegas de mantenimiento, las **Common Table Expressions** o CTEs, son la solución elegante moderna.
+En la lección pasada vimos que anidar demasiadas Subconsultas puede transformar tu código en un enredo de espagueti imposible de leer (código *Spaghetti*, como le dicen los haters).
 
-Fueron creadas bajo la filosofía: *"¿Por qué no le ponemos un nombre bonito y temporal a esa consulta infernal, la guardamos arriba, y luego simplemente la unimos con un JOIN limpio limpio limpio al final del reporte?"*
+Para arreglar eso, la industria inventó las **Common Table Expressions (CTEs)**. Son la solución elegante y moderna.
 
-## ¡Invocando a la Palabra Sagrada `WITH`!
+Fueron creadas bajo esta genial idea: *"¿Por qué no le ponemos un nombre bonito a esa sub-consulta asquerosa, la guardamos temporalmente al inicio del archivo, y luego simplemente la cruzamos con un JOIN limpio al final?"*
 
-Las CTE se definen siempre con la directiva obligatoria **`WITH`** en la cima absoluta de todo el código de tu archivo SQL.
+## 🔮 Invocando la Palabra Sagrada: `WITH`
 
-> **Objetivo de reporte:** Extraer a todos mis empleados, pero pegándoles una nueva columna que diga "Promedio de lo que ganan todos los que trabajan en su mismo puesto para comparar si están bien o mal remunerados".
+Las CTE siempre se declaran usando el comando `WITH` en la cima absoluta de tu código. Es como armar tu *Loadout* (clase, armas, pociones) en el lobby antes de que empiece la partida de Warzone.
 
-Hacer esto con Subqueries o JOINs anidados es un enredo visual brutal. Veamos la elegancia suprema:
+> **Misión del Jefe:** Extraer a todos los jugadores, pero agregando una columna extra que diga "El WinRate Promedio de todo su Clan" para ver si el jugador está carreando a su clan o lo están carreando a él.
+
+Hacer esto anidando es brutal para los ojos. Mira esta elegancia:
 
 ```sql
--- Parte Superior: Creamos el CTE con WITH
-WITH CTE_PromedioPuesto AS (
+-- 🛠️ EL LOBBY: Creamos el CTE (La tabla temporal) con WITH
+WITH CTE_PromedioClan AS (
     SELECT 
-        Puesto, 
-        AVG(Salario) AS Salario_Promedio
-    FROM Empleados
-    GROUP BY Puesto
+        Clan_ID, 
+        AVG(WinRate) AS WinRate_Del_Clan
+    FROM Jugadores
+    GROUP BY Clan_ID
 )
--- Fin de la burbuja. Esa "tabla virtual temporal" ya existe en la nube por 1 nanosegundo.
+-- ⏱️ Fin del Lobby. Esta "tabla virtual" solo existirá en la nube por 1 segundo mientras corre el código.
 
--- Parte Inferior: Nuestro reporte ejecutivo real.
+-- 🎮 LA PARTIDA: Nuestro reporte final, totalmente limpio.
 SELECT 
-    E.Nombre, 
-    E.Puesto, 
-    E.Salario,
-    C.Salario_Promedio, -- Esta columna se lee limpia de la CTE arriba!
-    (E.Salario - C.Salario_Promedio) AS Diferencia
-FROM Empleados AS E
-LEFT JOIN CTE_PromedioPuesto AS C 
-    ON E.Puesto = C.Puesto;
+    J.GamerTag, 
+    J.WinRate AS Su_WinRate_Personal,
+    C.WinRate_Del_Clan,      -- ¡Invocamos la columna del lobby de arriba!
+    (J.WinRate - C.WinRate_Del_Clan) AS Carreo_Puntos
+FROM Jugadores AS J
+LEFT JOIN CTE_PromedioClan AS C 
+    ON J.Clan_ID = C.Clan_ID;
 ```
 
-## Beneficios del WITH
-1. **Legibilidad:** Se lee como un libro de arriba a abajo.
-2. **Reutilización:** Una vez declarada la CTE arriba, puedes invocarla dentro de ese script tantas veces como desees sin volver a escribir todo el Select larguísimo.
-3. **Múltiples Tablas Mentales:** Si la lógica requiere cruzar 8 fuentes separadas gigantes (Ventas, SAP, Operaciones, Cloud, Finanzas), puedes simplemente separar el cálculo de cada cosa en su CTE respectiva arriba, y el último `SELECT` queda como el anillo que invoca a todos.
+## ⭐ Los Buffs Secretos del `WITH`
+1. **Legibilidad Extrema:** Se lee como un libro de arriba hacia abajo. Cero confusiones.
+2. **Reutilización:** Una vez creas esa CTE en el Lobby, puedes hacerle `SELECT` o cruzarla mediante `JOIN` todas las veces que quieras más abajo.
+3. **El Multiverso:** Si tu reporte financiero requiere datos de Ventas, de Logs del Server, y del Foro, puedes crear múltiples CTEs separadas con comas, y unirlas todas al final como si fueras Thanos recolectando gemas.
 
 ```sql
-WITH CTE_Ventas AS (...),
-     CTE_Marketing AS (...),
-     CTE_Logistica AS (...)
+WITH CTE_Partidas_Ayer AS (...),
+     CTE_Baneos_Hoy AS (...),
+     CTE_Ventas_Skins AS (...)
 
+-- El gran final:
 SELECT * 
-FROM CTE_Ventas V
-JOIN CTE_Marketing M ON V.id = M.id
-JOIN CTE_Logistica L ON V.id = L.id;
+FROM CTE_Partidas_Ayer P
+JOIN CTE_Baneos_Hoy B ON P.Server_ID = B.Server_ID
+JOIN CTE_Ventas_Skins V ON P.Server_ID = V.Server_ID;
 ```
 
-Añade esto a tu arsenal y ya estás programando consultas estructurales serias de la Gran Liga Tecnológica.
+Si dominas el `WITH` y los `JOINS`, ya puedes poner *"Advanced SQL"* en tu currículum sin miedo al ban.
 
-¡Felicidades por completar este largo y maravilloso curso! Prepárate ahora para dominar [Análisis de Datos con BI](../analisis-de-datos). 🚀
+¡🎉 FELICIDADES POR LLEGAR HASTA AQUÍ y DERROTAR SQL! Prepárate para tu próximo gran desafío: [Análisis de Datos con Excel y PowerBI](../analisis-de-datos). 🚀

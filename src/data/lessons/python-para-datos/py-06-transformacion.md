@@ -1,46 +1,46 @@
-# Filtros y Transformaciones Avanzadas (Muting)
+# ⚔️ Filtros y Mutaciones (Buffs en AoE)
 
-Ya tienes un DataFrame reluciente, pulido, sin una sola fila basura. Todo es número y texto de alta calidad corporativa. Y entonces llega tu jefe y dice:
-_"No me interesa globalmente. Sólo quiero ver las ventas que hayan sucedido en Europa y que encima hayan sido compras mayores a $5,000 dólares, y además créame sobre eso una nueva columna con el 20% de descuento restado."_
+Ya expulsaste a los AFKs (NaNs) y tu DataFrame está pulcro y nivel max. Pero viene el Coach del Main Roster y te dice:
+_"No me interesan los noobs. Sólo sácame la lista de jugadores que sean de Rango Radiante, que tengan más de 5,000 Horas de juego, y mételes un "Buff" multiplicando todo su Oro farmeado por 2."_
 
-Bienvenido al filtro en Python (`WHERE` en SQL, `Filtros Avanzados` en Excel).
+Esto en Excel te tomaría 10 clics y se colgaría. En Pandas, es un soplido.
 
-## 1. Filtros Condicionales (Mascarillas Booleanas)
+## 1. El Matchmaking Avanzado (Filtros Booleanos)
 
-A diferencia de SQL, en Pandas aplicamos los filtros creando una condición, y pasándole esa condición directamente entre los corchetes cuadráticos del nombre de nuestro DataFrame.
+A diferencia de SQL donde usas `WHERE`, en Pandas creamos "Condiciones" (Reglas del Matchmaking), y se las lanzamos directamente a la cara del DataFrame entre corchetes cuadrados `[]`.
 
 ```python
 import pandas as pd
-df = pd.read_csv("ventas.csv")
+df = pd.read_csv("ranked_stats.csv")
 
-# 1. Creamos la condición (Esto nos da puras verdades o falsos internamente)
-condicion_europa = (df["Continente"] == "Europa")
-condicion_dinero = (df["Venta"] > 5000)
+# 1. Definimos las Reglas del Matchmaking
+soy_radiante = (df["Rango"] == "Radiante")
+muchas_horas = (df["Horas_Jugadas"] > 5000)
 
-# 2. Las pasamos al filtro (Para MÚLTIPLES usar un ampersand `&` que significa Y / AND)
-# Usen paréntesis en cada condición al unir!
-df_europa_elite = df[(condicion_europa) & (condicion_dinero)]
+# 2. Las pasamos al filtro real. (Para decirle "Y / AND" usamos `&`)
+# ¡Obligatorio poner paréntesis a cada regla!
+df_los_dioses_del_juego = df[(soy_radiante) & (muchas_horas)]
 
-# ¡Boom! El nuevo df ahora solo posee lo que el jefe pidió
-print(df_europa_elite.shape) 
+# ¡Boom! La tabla nueva solo tiene a la Élite
+print(df_los_dioses_del_juego.shape) 
 ```
 
-## 2. Creando Columnas al Aire (Mutación)
+## 2. Creando Nuevos Stats (Mutación Directa)
 
-Nuestro SQL sabe crear alias al vuelo. Nuestro Excel crea una columna y una fórmula que se auto-arrastra. En Pandas logras crear y computar matemáticas por Vector (en lotes de un millón de veces a la vez) con un inofensivo signo de **igual `= `**.
+En Excel arrastras molestas fórmulas celda por celda hacia abajo. En Python/Pandas aplicamos ataques **AoE (Area of Effect)**. Computamos columnas enteras en masa (vectorización) en 1 milisegundo. Basta con inventarte un nombre de columna con el signo **igual `= `** y el motor atacará a toda la matriz junta.
 
 ```python
-# Si llamas a una columna nueva entre comillas e igualas a otra... se crea automágica y rellena hasta la fila 1 millón repitiendo el cálculo nativo de CPU C.
+# Inventamos un "Daño Real" que sea el Daño inflado quitándole la Armadura Enemiga.
+# Pandas mutará automáticamente las 5 millones de filas de un golpe.
+df_los_dioses_del_juego["Daño_Real"] = df_los_dioses_del_juego["Daño"] - df_los_dioses_del_juego["Armadura_Enemiga"]
 
-df_europa_elite["Monto_Descuento_Maledicto_Jefe"] = df_europa_elite["Venta"] * 0.20
+# Creando el "Oro con Buff del Evento x2"
+df_los_dioses_del_juego["Oro_Total_Evento"] = df_los_dioses_del_juego["Oro_Farmeado"] * 2
 
-# Crear la Venta Final Neta
-df_europa_elite["Venta_Final_Neta"] = df_europa_elite["Venta"] - df_europa_elite["Monto_Descuento_Maledicto_Jefe"]
-
-# Ver que todo salió perfecto
-print(df_europa_elite[["Venta", "Venta_Final_Neta"]].head(3))
+# Imprimimos para ver nuestros nuevos Stats en acción
+print(df_los_dioses_del_juego[["GamerTag", "Daño_Real", "Oro_Total_Evento"]].head(3))
 ```
 
-¿Tiempo de Excel vs Pandas para mutar filas matemáticas? 
-- **Excel:** Trabado y pasmado con la ruidosa CPU calculando celdas encadenadas en la fórmula `Venta_F4 * 0.2 - N9`. 
-- **Pandas Dataframe con NumPy Base:** Nanosegundos indetectables. Todo viaja matemáticamente de forma matricial (vectorizada por procesador).
+¿Tiempo de Excel vs Pandas para mutar stats matemáticas pesadas? 
+- **Excel:** Tu procesador empieza a sonar como un reactor nuclear sumando celditas.
+- **Pandas bajo el motor C (NumPy base):** Nanosegundos. Todo viaja matemáticamente de forma matricial instantánea.

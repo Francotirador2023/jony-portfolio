@@ -1,28 +1,23 @@
-# Calidad de Datos (Data Quality)
+# 🛡️ Calidad de Datos (El Sistema Anti-Cheat)
 
-En el mundo corporativo analítico hay un dicho muy famoso entre los ingenieros de datos anglosajones: 
+Entre los programadores TOP del mundo existe una ley de oro inquebrantable llamada **GIGO**: 
+> **"Garbage In, Garbage Out" (Entra basura, sale basura).**
 
-> **"Garbage In, Garbage Out" (GIGO)**.
+Imagina que creas el mejor Dashboard de la historia, súper hermoso y optimizado. Pero, ¿qué pasa si el servidor del juego está lleno de Hackers o *Partidas Guardadas (Save Files)* corruptos? Tu tablero mostrará que un jugador de Bronce hizo 1 billón de daño en 1 segundo. Tu sistema creerá esa mentira, y tomarán decisiones pésimas.
 
-Significa sencillamente "Entra basura, sale basura". Puedes tener el mejor esquema de estrella hiper-optimizado en tu Power BI o tu máquina de SQL en Amazon, tu código y tu cerebro DAX puede ser maravilloso. Pero, si el dato puro que viene del sistema es basura, tu hermoso tablero con gráficos neón contará la peor gran mentira y llevará a tomar decisiones millonarias... que fundirán a la compañía.
+Un analista de negocios **Senior** es como el sistema Anti-Cheat (Vanguard / Ricochet). Nunca lanza un gráfico hasta haber esterilizado la base de datos.
 
-## El rol Analítico frente a la calidad de Datos
+## 🕵️‍♂️ Revisión 1: Bugs de Formato (Tipos de Datos)
+El error humano más común. Pasa cuando un sistema mal configurado permite meter letras donde van números.
+- Ejemplo: Alguien guardó su nivel como "Nivel Cien" en lugar de `100`. Tu Dashboard intentará sumar la palabra "Cien" y la BBDD crasheará.
+- **La Solución:** Usa el martillo pesado de `Power Query` para "Forzar Limpieza" de toda la columna a `Tipo: Número Entero`, o desecha las filas corruptas.
 
-Un analista de negocios en rol Junior se confía y empieza a graficar directo de la sábana de Excel.
-Un analista de negocios **Senior** no lanza una sola gráfica hasta haber completado los flujos de "Data Quality Control".
+## 🕵️‍♂️ Revisión 2: Glitches de Duplicación (Duplicados)
+Un lag del servidor provocó que la importación de datos metiera tu victoria de ayer **dos veces** en el historial. El Coach de tu equipo ve la gráfica e ilusionado piensa que tienen un WinRate del 100%. Mentira absoluta.
+- **La Solución:** Usa el botón de **Quitar Filas Duplicadas** en Power Query, o usa un COUNT en SQL basándote en el `Match_ID` (que debe ser siempre único por partida) para cazar el error y banear ese bug.
 
-### Revisión Preventiva 1: Tipos de Datos (Formatos Sucios)
-Es el problema más repetido por el error humano comercial en las cajas rústicas o Excels antiguos. 
-- Personas guardando sus números de teléfono en un espacio y el sistema los leyó como `Número Integro`, y las sumatorias de BI colapsan porque "suma 20 teléfonos en vez de sumar ventas".
-- ¿Solución? Asegúrate de pre-limpiar esto con el martillo pesado del editor nativo `Power Query`. Pásalo forzadamente a `Tipo: TEXTO`.
+## 🕵️‍♂️ Revisión 3: Los Hackers (Atípicos u Outliers)
+¿Aparece una compra por 99 Millones de Monedas de Oro de un jugador nivel 1 que fue creada hace 5 minutos? Esto altera y rompe todos tus promedios (Averages).
+- **La Solución:** Estos picos son fáciles de cazar antes de graficar. Revisa siempre los "Valores Máximos y Mínimos" con herramientas estadísticas. Si hay una barra en tu gráfica que se sale de los límites naturales del juego, tienes un problema de negocio grave.
 
-### Revisión Preventiva 2: Los Duplicados Malditos
-Ventas importadas dos veces de un sistema anticuado sin saberlo. El jefe ve un salto en la gráfica de 500% y todos festejan... y al final de mes se descubre el desfalco de métricas en el P&L que arrastró sus cabezas al fracaso.
-- Usa en Power Query el confiable botón **Quitar Filas Duplicadas**.
-- Mejor aún, en base de datos si sabes SQL, usarás comandos visuales y estadísticos (`COUNT() > 1`) por el ID unívoco transaccional para auditar al desarrollador y cantarle sus verdades. 
-
-### Revisión Preventiva 3: Valores Atípicos (Outliers)
-¿Aparece una venta por 99 Millones de dólares a Pepito de la esquina que normalmente compra 10 dólares en un sábado? Un "dedazo" histórico arruinando tu promedio mensual.
-- Estos picos son fácilmente auditables con analítica rápida estadística en Excel antes del modelado, revisando las desviaciones y mínimos o máximos absolutos con `MAX()` y `MIN()` por curiosidad lógica.
-
-Sin la limpieza minuciosa e inquisitiva tu carrera termina apenas inicie. Un Analista que no cuestiona a los datos, ¡entonces simplemente hace copy & paste!
+*El verdadero Analista cuestiona a los datos como un detective. ¡No seas alguien que solo hace Copy / Paste ciegamente!*

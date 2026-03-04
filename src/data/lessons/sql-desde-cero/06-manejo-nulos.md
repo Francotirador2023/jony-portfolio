@@ -1,50 +1,52 @@
-# El Misterio del Dato Nulo (NULL)
+# 👻 El Misterio del Dato Nulo (NULL)
 
-En Bases de Datos, `NULL` no es equivalente a cero (`0`) y **tampoco equivale a un texto vacío (`''`)**.
+En el mundo de las Bases de Datos, `NULL` no es igual a cero (`0`) y **tampoco equivale a un texto vacío (`''`)**.
 
-> **NULL significa: Información Ausente / Desconocida.**
+> ⚠️ **NULL significa: Información Ausente, Desconocida o "Missing in Action" (MIA).**
 
-Por ejemplo, si Juan se registra en tu app y no pone su segundo nombre, ese campo queda en `NULL`. Simplemente la base de datos dice "no lo sabemos".
+Imagina que un jugador nuevo entra a tu juego pero decide saltarse el tutorial y no elige ninguna "Nacionalidad" para su perfil. En la base de datos, ese campo no dirá "Ninguna"... simplemente quedará en `NULL`. La base de datos asume que "todavía no lo sabemos".
 
-## El gran error de los principiantes
+## ❌ El gran error de los novatos (Noobs)
 
-Supongamos que quieres ver a todos los empleados de contabilidad que no tienen cargado un número de teléfono.
+Supongamos que quieres bannear o ver a todos los jugadores que no han verificado su número de teléfono.
 
-**ERROR (No funciona):**
+**ERROR (No va a funcionar):**
 ```sql
-SELECT Nombre 
-FROM Empleados 
-WHERE Telefono = NULL;
+SELECT GamerTag 
+FROM Cuentas 
+WHERE Telefono = NULL;  -- ❌ ¡MAL!
 ```
-Esto fallará. Es imposible comprobar si un valor es "igual" a lo desconocido.
+Esto fallará 100%. Es imposible comprobar si algo es "igual" a lo desconocido. Es como preguntar si un fantasma mide 1.70m. 
 
 **LA FORMA CORRECTA:**
-Usamos operadores verbales: `IS NULL` o `IS NOT NULL`.
+Para los fantasmas, usamos operadores verbales: `IS NULL` o `IS NOT NULL`.
 
 ```sql
--- Queremos a los que NO tienen teléfono cargado
-SELECT Nombre 
-FROM Empleados 
+-- Queremos a los que NO tienen teléfono cargado (Los sospechosos)
+SELECT GamerTag 
+FROM Cuentas 
 WHERE Telefono IS NULL;
 
--- Queremos a los que SÍ tienen teléfono cargado
-SELECT Nombre, Telefono 
-FROM Empleados 
+-- Queremos a los jugadores verificados (Los que SÍ dejaron su número)
+SELECT GamerTag, Telefono 
+FROM Cuentas 
 WHERE Telefono IS NOT NULL;
 ```
 
-## Salvando reportes: COALESCE
+## 🛡️ Salvando partidas: COALESCE (El ítem de repuesto)
 
-Imagina que creas un reporte sumando los bonos de los empleados. Algunos traen NULL en la columna Bono porque su contrato no incluye ese beneficio. 
+Imagina que al final de la temporada sumas los "Puntos de Liga (LP)" de tus jugadores con los puntos "Bonus_Fidelidad". Pero algunos jugadores nuevos tienen ese bonus en `NULL` (porque no califican aún).
 
-Sumar un número (`1000`) más un `NULL` matemático, ¡resulta en `NULL`!. Se rompe el reporte.
+Sumar matemáticamente un número (`1000 LP`) más un `NULL`... ¡Provoca que el resultado final sea `NULL`! Le borrarías los puntos a tu jugador.
 
-Para esto usamos la maravillosa función `COALESCE()`. Su trabajo es: "Devuélveme el primer valor, pero si ese valor es NULL, entonces devuélveme esta segunda opción que yo te dejo de repuesto".
+Para salvar el día usamos la función mágica `COALESCE()`. Su trabajo es: "Devuélveme el valor original, pero si está vacío (NULL), entonces equipa esta **Skins por defecto** o este número de repuesto que te doy".
 
 ```sql
--- Si el campo Bono está nulo, pondrá el número 0 en su lugar.
-SELECT Nombre, Salario_Base + COALESCE(Bono, 0) AS Sueldo_Total 
-FROM Pagos;
+-- Si el campo Bonus es nulo, SQL pondrá un 0 imaginario para que la suma funcione.
+SELECT 
+    GamerTag, 
+    Puntos_Liga + COALESCE(Bonus_Fidelidad, 0) AS Puntos_Totales 
+FROM Tabla_Puntuacion;
 ```
 
-Es una herramienta imprescindible que todo Analista usa todos los días.
+¡`COALESCE` es la carta trampa que más usarás en reportes financieros y de métricas!

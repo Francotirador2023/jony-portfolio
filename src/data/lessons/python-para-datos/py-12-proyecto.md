@@ -1,47 +1,47 @@
-# Proyecto Final: De Python Vainilla a Presentador Mágico
+# 🏁 Proyecto Final: Graduación E-Sports Analytics
 
-¡Bienvenido al clímax de tu Ruta de Aprendizaje! Hasta ahora, has absorbido todo sobre Bases de Datos Relacionales (SQL), sobre Esquemas en Estrella Corporativos (Power BI / Excel DAX) y sobre Automatización Pura Lineal Vectorizada (Python y NumPy / Pandas).
+¡Felicidades por llegar al clímax de tu aventura! Hasta aquí has masterizado la arquitectura de bases de datos de servidores en SQL, la creación de Modelos Multidimensionales e In-Game HUDs limpios en Power BI... y la Vectorización de Bots Masivos de Limpieza con Python (Pandas/Seaborn).
 
-¿Cuál es la prueba de fuego de la industria y la entrevista de Coder Data Analyst en empresas Big Tech modernas? **Poder ensamblar una historia**.
+¿Cuál es el Boss Final o la prueba de fuego que te hacen en una empresa Big Tech (o un top tier de Esports)? **Tu Capacidad de Construir Una Historia Pura a partir de Basura.**
 
-Este Proyecto Final evaluatorio probará de una pasada el recorrido íntegro:
+Aquí está tu Misión Final evaluatoria. Muestra qué tan roto estás:
 
-## 1. El Desafío Financiero
+## 1. El Desafío del CEO (El Main Quest)
 
-Recibirás un archivo caótico llamado `Raw_Log_Transaccional_Banco_2024.csv` conteniendo 5.8 millones de lineas corruptas, Nulos, saltos de formato y basura general humana. Debes emular al Analista de Datos Senior asignado para el reporte anual del CEO.
+Recibirás un archivo corrupto del lado del servidor llamado `Raw_World_Tournament_Logs_2026.csv`. Contiene 5.8 millones de filas (Logs de combate, muertes, chat ingame). Tiene Nulos (AFKs), textos raros y lag. Emula tu rol de Programador Senior.
 
-Usarás tu flamante Jupyter Notebook y tu instinto Pandas para:
-- Crear tu script vital `pd.read_csv()` importando los millones de registros.
-- **Limpieza (ETL de Python):** Identificar la morralla estadística o los vacíos `NaN` e imputarlos con la poderosa Media matemática o `dropna()`.
-- **Estructuración del EDA (Exploratory Data Analysis):** Crear Filtros vectorizados avanzados, mutar la sábana con campos de Descuento cruzados e Impuestos al Aire local (`df["columna_nueva"] = operacion`).
-- **Resumen Magistral (`.groupby()`):** Lograr colapsar temporalmente y grupalmente las 5 Millones de líneas en un resumen limpio anual cruzado por Geografía Mundial usando la agrupación absoluta de Pandas.
+Usarás todo tu instinto de supervivencia en Pandas para:
+- Conectar usando el portal sagrado `pd.read_csv()` para jalarlo a la RAM de tu PC.
+- **Bot Anti-Cheat (ETL):** Detectar la morralla estadística o los fantasmas (`NaN`) y aplicar la técnica maestra: Limpiarlos brutalmente (`dropna`) o Rellenarlos con Puntos base (`fillna`).
+- **Aplicar el Buff General (Mutación Mutante AoE):** Cruza una nueva métrica de daño multiplicando Daño * Headshots como índice de Mortalidad Suprema de forma vectorizada super rápida.
+- **Ránking Competitivo Final (`.groupby()`):** Pide que Pandas colapse las 5 millones de balas perdidas en el "Leaderboard Total" y saca los picos máximos de muertes por cada Clan / Continente que participó.
 
-## 2. Puesta en Escena Final
+## 2. El HUD de la Victoria (La Gráfica Final)
 
-Una vez limpia y condensada la realidad del modelo, lo graficarás a través de la Librería majestuosa **Seaborn**:
+Una vez tu DataFrame brille purificado, humillarás a tus competidores pintando el escenario con los Shaders 4k de **Seaborn**:
 
-Generarás tres lienzos visuales (`subplots`):
-1. **La Tendencia (`Lineplot`):** Las ventas mensuales MTD e YTD.
-2. **El Comparativo Discreto (`Barplot`):** Las barras aplastantes del Continente Europa VS Asia vs América (ordenadas con sort_values de mayor desempeño).
-3. **El Correlacional (`Heatmap`):** El mosaico de temperatura que probará si existió una correlación inminente entre la Inversión en Marketing Mensual y su repunte final Comercial, arrojando el índice *r* de pearson visual en el bloque a la pantalla de la mesa circular del corporativo.
+Crearás un Dashboard en pantalla dividida (`subplots`) atacando en 3 frentes:
+1. **La Línea de la Gloria (`Lineplot`):** La curva del progreso de MMR por mes de la temporada.
+2. **El Pódium Final (`Barplot`):** El versus definitivo aplastante en barras horizontales: "Europa vs América vs Asia" ordenadas por Kills de mayor a menor.
+3. **El Sensor Térmico Definitivo (`Heatmap`):** Un bloque visual incadescente probándoles a tus inversores si hubo una correlación exacta entre "Más Oro Gastado" y "Más Partidas Ganadas", enseñando el índice secreto (*R* cuadrado de Pearson) para revelar el verdadero Meta del Juego.
 
-## 3. Despedida
+## 3. Discurso de Despedida (GG WP)
 
-Conquistar las librerías NumPy, Pandas, Matplotlib y Seaborn marcan oficialmente tu Ascensión y te declaran 100% competente como un **Analista de Datos Programador y Data Storytelling Mágico**.
+Conquistar las librerías NumPy, Pandas, Matplotlib y Seaborn marca hoy matemáticamente tu ascenso a Diamante / Radiante, declarándote competente oficialmente como un **Data Analyst Moderno / Programador de Machine Learning Junior**.
 
-La industria tecnológica te espera. Tus archivos `.ipynb` limpios y documentados serán el portafolio clave que aplastará en cualquier mesa de reclutamiento ante tus colegas estancados en el simple arrastrado de PowerPoints. 
+Tus archivos de programación locales (.ipynb) serán las armas letales y el portafolio que aplastarán a los aburridos aplicantes novatos que aún arrastran barritas grises de PowerPoints sucios en las entrevistas.
 
-Pero antes de irte... ¿Qué tal si pruebas tus habilidades **ahora mismo, directo en tu navegador**?
-He cargado el archivo `Raw_Log_Transaccional_Banco_2024.csv` en la memoria del motor. Escribe tu código Pandas y presiona Play para limpiarlo:
+Pero antes de despedirnos... **¿Qué tal si haces tú la Primera Sangre visual directo en tu navegador hoy mismo?**
+He cargado el archivo del mundial `Raw_World_Tournament_Logs_2026.csv` en el motor en la nube. Teclea tu bot de limpieza y presiona Execute:
 
 ```python
 import pandas as pd
 
-# Tu código aquí: Carga el banco, quita los Nulos e imprime los primeros 5 registros
-df_banco = pd.read_csv('Raw_Log_Transaccional_Banco_2024.csv')
+# Tu código aquí: Descarga los logs, expulsa a los AFK y saca a luz al TOP 5 de filas de la tabla:
+df_mundial = pd.read_csv('Raw_World_Tournament_Logs_2026.csv')
 
-# Muestra el avance
-print(df_banco.head())
+# Muestra el radar final
+print(df_mundial.head())
 ```
 
-**¡Adelante, Científico de los Datos del Futuro! ¡Mucho Éxito!**
+**¡Gracias por Jugar a Aprender! Escribiste GG (Good Game) a lo aburrido. ¡Éxito en The Big Tech y en los E-sports! 🚀💻**

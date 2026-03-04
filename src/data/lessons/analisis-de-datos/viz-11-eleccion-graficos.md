@@ -1,34 +1,32 @@
-# Elección Correcta del Gráfico (Data Storytelling)
+# 🎯 Escogiendo tu Arma (Tipos de Gráficos)
 
-El pecado mortal del Analista "Creativo" Junior es usar gráficos de Tartas 3D (Pasteles) de 10 porciones para lucirse.
+El error número 1 del analista novato es usar Gráficas de "Pastel 3D" (Tartas rotas con 10 pedazos de colores) porque según él, "se ven cool".
+Un verdadero maestro **NUNCA** usa gráficos de Pastel a menos que sea algo hiper básico como: `Win 50% vs Lose 50%`.
 
-El Analista Senior de Microsoft **NUNCA** usa Tartas en Power BI a menos que sea excepcionalmente dictaminado para dos porciones literales aisladas (`Hombres vs Mujeres 50%`).
+Cada gráfico sirve para atacar un problema diferente. Es como escoger si vas con Sniper, Escopeta o Rifle de Asalto.
 
-Elegir el gráfico es contar una Historia. No todos aplican para todo.
+## 1. Barras y Columnas (El Rifle de Asalto)
 
-## 1. Barras y Columnas (Comparación)
+Es la herramienta Todo-Terreno irremplazable. Se usa para **comparar categorías directas** de un vistazo.
 
-Es el caballo de batalla indestructible universal. Se utiliza para comparar Categorías discretas e inmutables. 
-Diferencias rápidas detectables.
+- **Columnas (Verticales):** Mejor arma si tienes *Pocas* categorías (Ej: Rol Mago, Tanque, Asesino, Soporte). El texto cabe bien abajo.
+- **Barras (Horizontales):** Si vas a poner los 20 mejores jugadores del mundo... el texto vertical te romperá el cuello. Gira la gráfica. ¡Las barras horizontales salvan la vida para leer nombres muy largos!
 
-- **Columnas (Vertical):** Mejor si tienes POCAS categorías para que el texto de abajo se lea. (Ej: Países del TLCAN -> México, USA, Canadá).
-- **Barras (Horizontal):** Vital si tienes 15 o más categorías, o si los nombres son MUY LARGOS que verticalmente tuercen la nuca. (Nombres completos de 15 Vendedores Excelentes).
+## 2. Gráfico de Líneas (La Máquina del Tiempo)
 
-## 2. Gráfico de Líneas (Tendencia en el Tiempo)
+Junto a tus fórmulas de inteligencia de tiempo DAX, el gráfico de líneas es el arma secreta de cualquier directivo.
+Solo se diseña para una cosa: **Ver cómo las cosas suben o bajan con los parches y el paso de los meses.**
+Colocas el tiempo en el Eje X (de enero a diciembre), y la línea fluye libremente contando la historia de tus victorias o derrotas.
 
-El REY ABSOLUTO del Calendario DAX de tu tablero. 
-Solo se usa y exclusivamente se diseña para ver cosas fluyendo de izquierda a derecha. *(Unidades Vendidas YoY por Meses, Tramos Semanales).* 
-Junto con el Time Intelligence, es la gráfica del CEO.
+## 3. Dispersión o Scatter Plot (El Radar del Sniper)
 
-## 3. Dispersión (Scatter Plot - Correlación)
+Para analistas matemáticos tryhards que buscan correlacionar y encontrar los "meta abusos" ocultos en el juego.
+Pones en el Eje horizontal *"Tiempo jugando al día"* y en el vertical *"Puntos de Liga Oros"* y el programa dispara cientos de puntitos en pantalla. Si detectas que forman una línea diagonal... habrás descubierto que quienes no duermen, ganan más (bueno, eso es obvio).
 
-Para los científicos o analistas muy matemáticos que buscan comprobar patrones cruzados de rentabilidad. 
-En el Eje X pones "Nivel Salarial" y en el Eje Y pones "Nivel de Gasto", y arrojas 1000 puntos en pantalla. Verás una gran nube y determinarás si hay tendencia o no para vender seguros.
+## 4. La Tarjeta / Card (El Número Desnudo)
 
-## 4. Tarjeta (KPI Ocular Simple)
+Un número gigantesco en negrita y nada más. Es precioso por lo directo que es.
+Solo dice: `"Tú WinRate Final es del 67% (+3% mejor que la temporada pasada en Verde)"`.
+Tus tarjetas deben ir siempre flotando en el cielo de tu tablero, sin bordes ni sombras de colores novatas, bien limpias y centradas.
 
-Número grande y feo a simple vista, pero hermoso por la asertiva simpleza.
-Sirve únicamente para decirte `"Tu nivel actual de vida, comparado a tu objetivo que fue de 4M, alcanzaste y superaste la cota con 4.5M (+10% Verde Maravilloso)"`.
-Ponlas siempre agrupadas en la franja maestra superior alta.
-
-Si mezclas colores pasteles sutiles, el Patrón Z, tarjetas superiores asertivas, y un hermoso gráfico de barras simple con las Leyendas retiradas para no atascar de letras el reporte... ¡Tu Data Storytelling volará mentes en las presentaciones al Directorio Gerencial y serás el Señor de los Creadores!
+Si dominas este loadout (Colores oscuros/cyberpunk limpios, Patrón Z para que te lean rápido, Tarjetas gigantes y Barras horizontales), el equipo que te contrate creerá que eres el puto amo del Data Storytelling.

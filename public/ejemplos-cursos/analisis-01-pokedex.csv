@@ -1,0 +1,11 @@
+DexData,Name,Type_1,Type_2,Total,HP,Attack,Defense,Sp_Atk,Sp_Def,Speed,Generation,Legendary
+1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False
+4,Charmander,Fire,,309,39,52,43,60,50,65,1,False
+7,Squirtle,Water,,314,44,48,65,50,64,43,1,False
+25,Pikachu,Electric,,320,35,55,40,50,50,90,1,False
+150,Mewtwo,Psychic,,680,106,110,90,154,90,130,1,True
+249,Lugia,Psychic,Flying,680,106,90,130,90,154,110,2,True
+448,Lucario,Fighting,Steel,525,70,110,70,115,70,90,4,False
+384,Rayquaza,Dragon,Flying,680,105,150,90,150,90,95,3,True
+722,Rowlet,Grass,Flying,320,68,55,55,50,50,42,7,False
+133,Eevee,Normal,,325,55,55,50,45,65,55,1,False

@@ -1,29 +1,30 @@
-# Publicación en la Nube (Power BI Service)
+# ☁️ Publicación (Subiendo al Cloud)
 
-Tu grandiosa obra maestra de 9 hojas, interacciones deseadas, el modelo estrella engranado al fondo y tu DAX resplandeciendo en cada tarjeta ya corre mágicamente maravilloso en... **tu Computadora Portátil Personal.**
+Tu obra de arte está completada. Tiene cálculos increíbles de DAX y parece el menú interactivo súper inmersivo del último lanzamiento Triple A. Pero hay un problema: ¡Eso solo funciona localmente en tu Computadora con el juego abierto!
 
-¿Cómo le mostramos eso a la Sede Central en Alemania de nuestra corporación sin andar enviando nuestro pesadísimo `.PBIX` por WhatsApp o Drive?
+¿Cómo le haces para que tu Jefe en otra oficina (o un coach en otro país) lo pueda abrir sin que le mandes un archivo pesado por correo?
 
-Bienvenido al Power BI Service de la grandiosa Nube de Microsoft (Cloud).
+Bienvenido a **Power BI Service** (La Nube de Microsoft).
 
-## 1. El Switch "Publicar" (Publish Button)
+## 1. El Botón Mágico: "Publish" (Publicar)
 
-Con una cuenta corporativa profesional logueada (o Universitaria), presionas "Publish". Tu computadora virtual empaqueta los datos cargados comprimidos de forma milagrosa y tu DAX hiperenredado y los dispara al Cloud encriptado nativamente.
+Cuando le das al botón *Publicar* en la esquina de tu programa, tu PC comprime toda esa magia en tiempo récord, encripta tus fórmulas, y dispara todo el núcleo del Dashboard directamente a los Servidores Web de la compañía.
 
-Tu tablero ahora se transformó en un Enlace Web (`app.powerbi.com`) ejecutable en Safari, Edge y Teléfonos iPad y Móviles Android como si fuere la APP de un banco.
+Ahora, tu tablero es una **App Web Interactiva**. 
+Tu jefe o clientes solo necesitan un Link (`app.powerbi.com`), y podrán tocar todos los botones que hiciste desde un navegador Safari, o incluso desde The App Store en su iPhone o iPad Touch de bolsillo en la playa.
 
-![Dashboard de Power BI finalizado y limpio, listo para desplegar](/courses-assets/pbi_dashboard_clean.png)
+![Dashboard inmersivo de Power BI publicado listo para consumir](/images/courses/bi-dashboard-ejemplo.png)
 
-## 2. Refresco de Datos Programado (Gateways)
+## 2. El Farmeo Automático (Gateways)
 
-Pero si lo mandaste hoy 15 de Octubre... La gráfica de ventas se congeló el 15.
-Para que los datos sigan cayendo todos los días y las medidas se disparen al infinito con el YTD, tienes que instalar un "Pequeño conector/servidor esclavo silencioso" que corre en tu sistema Windows original las 24horas: El **Power BI Gateway**.
+Hay un problema... si subiste el Dashboard hoy 15 de Octubre, los datos se van a congelar el 15.
+Para que los datos (YTD, Partidas, Ganancias) no dejen de caer CADA SEGUNDO en la nube, debes usar un bot legal: **Power BI Gateway**.
 
-Al servicio Power BI Cloud tú le configuras la cita mental: 
-> *"Despierta a mi robot en mi PC terrenal de forma ultra remota todos los lunes a las 6 AM, haz que su Excel interno corra el Power Query local, recójase con el nuevo SQL, y arranca tu motor zumbando y dispáramelo silenciosito a la nube de Alemania de inmediato"*.
+Es un programita invisible ("Un Minion esclavo de farmeo") que dejas instalado en tu PC física encendida o en un Servidor en Windows 24/7 de tu empresa.
+Tú lo configuras mentalmente así:
+> *"Bot, todos los días a las 6:00 AM que yo aún estoy durmiendo, arranca solito el Motor, jala la info nueva desde la Base de Datos, procésala con nuestra magia de Power Query, y súbesela a la jefa directo al celular en la nube para cuando ella despierte a desayunar"*.
 
-Y cuando el Gerente desayune a las 8 AM abriendo su Tableta iPad reluciente, verá el nuevo corte actual mágico del mundo vivo. 
+¡Eso es verdadera manipulación de **Cloud Analytics**!
 
-¡Esto es Inteligencia Analítica Contemporánea! Has concluido la Ruta Intermedia del Excel avanzado y Power BI inmerso.
-
-Tu siguiente gran salto (cuando tu base reviente el billón de registros mundiales del servidor en la nube), será aprender las llaves maestras definitivas: **SQL Server y Python.** ¡Nos vemos en los pasillos corporativos de Data Science!
+¡HAS VENCIDO ESTE NIVEL! Acabas de dominar el temible camino Medio/Avanzado del Excel y el Busines Intelligence moderno.
+Tu siguiente y última batalla de Boss Final (cuando las bases de datos tienen 1 billón de filas y ni Power BI las aguanta) será el lenguaje de programación definitivo: **Python y sus Pandas**. 🐍🚀

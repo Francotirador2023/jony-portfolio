@@ -1,55 +1,55 @@
-# Técnicas de Limpieza y Valores Nulos (NaN)
+# 🗑️ Limpieza de Datos (AFKs y Bugs)
 
-Recordemos la maldición del analista de Power Query: **Entra basura, sale basura (GIGO).**
+Recuerda la Regla de Oro del Gaming Competitivo: **Entra basura, sale basura (GIGO)**.
 
-Cuando usas `pd.read_csv()` en base a un volcado de un sistema contable de 1995 donde los vendedores escribieron mal los nombres o dejaron casillas vacías. Al llegar a Python en tu hermoso DataFrame, no verás celdas "blancas", verás un espectro horrible llamado `NaN` (Not a Number).
+Si descargas el historial de partidas, habrá jugadores que se desconectaron, trolls que se pusieron nombres vacíos, o bugs del servidor. Al cargar eso en tu bello DataFrame de Pandas, no verás espacios "blancos". Verás la marca maldita: `NaN` (Not a Number). Literalmente el fantasma de los datos.
 
-## 1. Diagnosticando la Basura
+## 1. Escaneando el Servidor por AFKs
 
-Antes de intentar eliminar la basura, debemos contarlo.
+Antes de banear o limpiar, hay que pasar el escáner para ver qué tan infectada está la partida.
 
 ```python
 import pandas as pd
-df = pd.read_csv("ventas_sucias.csv")
+df = pd.read_csv("historial_partidas_sucio.csv")
 
-# ¿Cuántos valores NULOS hay por CADA columna?
+# ¿Cuántos AFKs (Nulls) hay en cada columna?
 print(df.isnull().sum())
 
-# Salida de ejemplo:
-# ID_Venta         0
-# Cliente        145   <-- 145 Sin nombre
-# Monto          20    <-- 20 No registraron el pago
-# Fecha          0
+# Salida del radar:
+# Match_ID         0
+# GamerTag       145   <-- 145 Jugadores anónimos invisibles
+# Daño_Hecho      20   <-- 20 crashearon y el servidor no registró su daño
+# Fecha            0
 ```
 
-¡Esos 20 montos sin registrar en `Monto` colapsarán cualquier función de SUMA o Promedio de estadística arrojando un error en toda tu página!
+¡Esos 20 `NaN` en la columna de Daño romperán cualquier matemática! Si le pides a Pandas que sume el daño, entrará en pánico.
 
-## 2. Técnica de Aniquilación (Drop)
+## 2. El Kick Definitivo (`dropna`)
 
-Si de un millón de transacciones solo hay 5 defectuosas, la técnica comercial es arrancar de raíz toda esa fila defectuosa por el bien mayor.
+Si de 1 millón de partidas solo 5 están bugeadas, la técnica más rápida es **kickear de la sala** (eliminar la fila completa) por el bien del servidor.
 
 ```python
-# Elimina y bota TODA la Fila si tan solo UNA de sus celdas es NaN
+# Expulsa TODA la Fila si el jugador tiene aunque sea UN solo `NaN`
 df_limpio = df.dropna()
 
-# ¿Solo borrar si la columna importante Monto está Nula?
-df_limpio = df.dropna(subset=['Monto'])
+# ¿Solo queremos kickear a los que tienen la columna VITAL 'Daño_Hecho' como NaN?
+df_limpio = df.dropna(subset=['Daño_Hecho'])
 ```
 
-## 3. Técnica de Imputación (Fill)
+## 3. Rellenar con Bots (`fillna`)
 
-A veces es inaudito tirar 5,000 registros a la basura por culpa de su columna secundaria Nula. Aquí entra la imputación: reemplazar el `NaN` por un valor predeterminado como Ceros estadísticos.
+A veces es injusto borrar historiales increíbles solo porque olvidaron poner de qué "País" eran. Aquí entra la Imputación: rellenar el hueco de ese jugador caído de la red con un Bot o un valor por defecto.
 
 ```python
-# Rellenar con ceros (0)
-df["Monto"] = df["Monto"].fillna(0)
+# Rellenar a los caídos con 0 daño base
+df["Daño_Hecho"] = df["Daño_Hecho"].fillna(0)
 
-# Rellenar con "Desconocido" en columnas de Texto
-df["Cliente"] = df["Cliente"].fillna("Cliente Local")
+# Rellenar a los Trolls con un tag estándar
+df["GamerTag"] = df["GamerTag"].fillna("Jugador Desconocido")
 
-# Rellenar con el Promedio General Matemático
-promedio_real = df["Monto"].mean()
-df["Monto"] = df["Monto"].fillna(promedio_real)
+# Magia Negra: Rellenar la vida que les faltaba con la "Vida Promedio" del servidor
+promedio_servidor = df["Daño_Hecho"].mean()
+df["Daño_Hecho"] = df["Daño_Hecho"].fillna(promedio_servidor)
 ```
 
-Con estas dos funciones maestras acabas de hacer que un algoritmo matemático reemplace el trabajo que le tomaría 4 días a un practicante humano de Excel abriendo filtros, escribiendo "cero" en las filas y arrastrando el ratón mil veces por la tabla.
+¡Dominar el arte del `fillna` te salva de destruir bases de datos invaluables de tu empresa!

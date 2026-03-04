@@ -1,42 +1,45 @@
-# Estadística Descriptiva Aplicada
+# 📊 Descubriendo el Matchmaking Oculto (Estadística EDA)
 
-Todo buen Analista de Datos "sabe mirar" los números. Pero el Exploratory Data Analysis (EDA) va más allá de solo filtrar. Se trata de entender matemáticamente cómo palpita el corazón de los datos.
+Cualquier niño con teclado puede filtrar tablas. Pero el verdadero Data Scientist va más allá: entiende el ELO oculto (MMR), sabe cazar "Smurfs" matemáticamente y entiende de verdad la salud del Servidor. 
+A esto se le llama **Análisis Exploratorio de Datos (EDA)**.
 
-## 1. El Ojo de Dios: `describe()`
+## 1. El Escáner de Poder: `describe()`
 
-La función `.describe()` es el botiquín de primeros auxilios de la ciencia de datos. Al aplicarla a un DataFrame, calcula al instante todos los indicadores de Estadística Descriptiva para CADA columna numérica del archivo.
+La función `.describe()` es el Visor de Poder de Dragon Ball. Se lo apuntas a tu DataFrame y en 1 milisegundo examina CADA columna numérica del archivo escupiendo su radiografía interna.
 
 ```python
 import pandas as pd
-df = pd.read_csv("ingresos.csv")
+df = pd.read_csv("puntos_liga_clasificatoria.csv")
 
-# Dame el cuadro de control médico de mis dineros
+# Sácame los Rayos X de nuestro nivel actual:
 print(df.describe())
 ```
 
-**¿Qué rayos te escupirá la consola?**
-- `count`: El conteo total (te dice subrepticiamente si hay Nulos (NaN) si es inferior al total esperado).
-- `mean`: La amada Media Aritmética (Promedio).
-- `std`: Desviación Estándar. (Si es muy alta, significa que tus ventas varían locamente de $5 a $1 millón, hay inestabilidad o clientes muy disparejos).
-- `min` y `max`: Te dice de forma atroz los límites de tu negocio.
-- `25%, 50%, 75%` (Cuartiles de Percentiles): El ansiado *Rango Intercuartílico*. El 50% es la "Mediana", el mejor detector de MENTIRAS.
+**¿Qué significan los números que te bota el radar?**
+- `count`: El conteo total de jugadores (Si esperabas 100 y dice 95... hay 5 AFKs infiltrados sin datos).
+- `mean`: El viejo y engañoso Promedio.
+- `std` (Desviación Estándar): ¿Qué tan caótico es el server? Si es altísima, significa que en la misma partida tienes Noobs de Plata 1 mezclados con Diamantes Tryhard. Zero balance de Matchmaking.
+- `min` y `max`: Te chivatea quién hizo récord mudial o quién es el peor jugador histórico.
+- `25%, 50%, 75%` (El Rango Intercuartílico): Si miras el 50% (La **Mediana**), sabrás la Verdad Absoluta, libre de Smurfs.
 
 ## 2. Promedio MENTIROSO vs Mediana REAL
 
-Un error súper Novato es confiarle toda la salud al `Promedio (.mean())`.
-Imagina que Bill Gates entra a un bar con 9 personas pobres. Si alguien mide la Riqueza *Promedio* de la sala... todos parecerán Millonarios.
+Un error clásico de *"Hierro 4 en Análisis"* es confiar ciegamente en el Promedio (`mean`).
 
-*"¡Qué barrio más próspero, ganan en Promedio $100 millones!"* - Diría el mal Analista.
+**Imagina esto:** Faker (Radiant / Pro-Player) entra de casualidad a una sala con 9 jugadores de Hierro Nivel 1.
+Si alguien mide el MMR *Promedio* de la sala... los números se inflarán salvajemente y todos los Hierro parecerán de liga Plata y Oro gracias al arrastre estadístico de Faker.
 
-La **Mediana (.median())**, ordena las 10 personas de menos dinero a más riqueza. Tomará al tipo del Medio de la Lista, y si el del medio gana $30 dólares... El analista Inteligente dirá: 
+*"¡Qué sala tan desafiante, el rango Promedio es Oro!"* - Diría el mal Analista engañado.
 
-*"Bill Gates es un pico anómalo, en este Barrio SE GANA HORRIBLE, la Mediana es $30"*.
+**La Mediana (`.median()`)**, no suma nada. Literalmente ordena a los 10 jugadores parados en fila india de peor a mejor, y le "toma el pulso" al SUJETO DEL MEDIO. Y si el tipo del medio es un Hierro... el analista Inteligente dirá: 
+
+*"Faker es un pico anómalo solitario (Smurf), en esta sala apestan, la verdadera Mediana es Hierro Nivel 1."*.
 
 ```python
-# Sacar Mediana Rápida en una columna engañosa
-print(df["Salarios_Mensuales"].median())
+# Cazar la Verdad sin dejarte engañar por los Smurfs
+print(df["Daño_Partida"].median())
 ```
 
-> **Consejo Senior Data Analyst:** Si tu Promedio (`mean`) es gigantescamente Diferente y Mayor a tu Mediana (`median`), tienes picos anómalos o multimillonarios ensuciando tu modelo, los famosísimos *"Outliers"*. 
+> 👑 **Consejo de Coach Senior:** Si tu Promedio (`mean`) es brutalmente enorme comparado con tu Mediana (`median`), tienes cuentas Smurfs o "Outliers" distorsionando y ensuciando tus estadísticas.
 
-En Machine Learning (que es tu posterior frontera), deberás matar los "Outliers" para que la Inteligencia Artificial aprenda el comportamiento del humano NORMAL y promedio, y no del Bill Gates fortuito de la esquina que compró 1 millón de pares de calcetines aleatoriamente en tu base.
+En Machine Learning (que es tu próximo gran salto profesional), tu deber será erradicar a esos Outliers locos para que la Inteligencia Artificial Aprenda cómo juega el Humano NORMAL, y no estudie al 0.01% de los dioses millonarios casuales de tus bases de datos.

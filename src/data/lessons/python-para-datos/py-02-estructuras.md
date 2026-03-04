@@ -1,55 +1,57 @@
-# Estructuras de Datos Nativas
+# 🎒 Tipos de Inventario (Estructuras Nativas)
 
-Tener una variable guardando un solo dato (`precio = 50`) es útil, pero en Análisis de Datos manejamos millones. Python tiene "contenedores" nativos para almacenar grupos de datos. Las tres más importantes son las Listas, las Tuplas y los Diccionarios.
+Tener una variable guardando un solo dato (`daño = 50`) es útil para el nivel 1. Pero, ¿qué pasa si quieres guardar los daños de 1 millón de jugadores? 
+Python te regala 3 tipos de "Contenedores" o expansiones de mochila.
 
-## 1. Listas (Lists) `[]`
+## 1. Listas (Lists) `[]` - La Mochila Flexible
 
-Las listas son secuencias **ordenadas y mutables** (puedes cambiarles el contenido después de crearlas). Te permiten agrupar elementos que lógicamente van juntos, como una columna de Excel.
+Las listas son secuencias **ordenadas y mutables**. Esto significa que puedes meter y sacar ítems, ordenarlos o borrarlos en medio de la partida.
 
 ```python
-# Creando una lista de ventas en dólares
-ventas_semana = [150, 420.5, 300, 890, 100]
+# Creando tu historial de Kills diarios
+kills_semana = [15, 42, 30, 89, 10]
 
-# Accediendo a elementos (¡En Python se empieza a contar desde el cero!)
-print(ventas_semana[0])    # Imprime: 150 (El primer elemento)
-print(ventas_semana[-1])   # Imprime: 100 (El último elemento, contando de atrás para adelante)
+# Buscando ítems (¡Los programadores empezamos a contar desde el cero!)
+print(kills_semana[0])    # Imprime: 15 (Tus kills del Lunes)
+print(kills_semana[-1])   # Imprime: 10 (El último día de la semana)
 
-# Modificando un dato (Oops, me equivoqué en el miércoles)
-ventas_semana[2] = 350
+# Editando un dato (hubo un re-calculo del servidor)
+kills_semana[2] = 35
 
-# Agregando un nuevo dato al final de la lista
-ventas_semana.append(250)
+# Agregando una Kill extra al final del historial
+kills_semana.append(25)
 ```
 
-## 2. Tuplas (Tuples) `()`
+## 2. Tuplas (Tuples) `()` - Las Reglas del Servidor
 
-Las tuplas son las hermanas "congeladas" de las Listas. Son **ordenadas pero INMUTABLES**. Una vez que se crean, no se pueden modificar, borrar ni agregar.
+Las Tuplas son las hermanas "congeladas" de las Listas. Son **ordenadas pero INMUTABLES**. Una vez que las creas, están bloqueadas de por vida. No entra nada y no sale nada.
 
-*¿Por qué querrías algo que no se edita?* Porque son más rápidas de procesar en la CPU para el ordenador y son perfectas para guardar catálogos fijos (ej. Meses del año, Coordenadas GPS).
+*¿Por qué querrías algo bloqueado?* Porque consumen poquísima RAM y son perfectas para guardar cosas que nunca deberías alterar por error humano.
 
 ```python
-dias_laborables = ("Lunes", "Martes", "Miércoles", "Jueves", "Viernes")
+mapas_competitivos = ("Dust2", "Mirage", "Inferno", "Nuke")
 
-# dias_laborables[0] = "Sunday" --> Esto lanzaría un error rojo (TypeError). ¡Están protegidas!
+# mapas_competitivos[0] = "Aztec"  --> ❌ ERROR FATAL. ¡El sistema anti-cheat no te dejará!
 ```
 
-## 3. Diccionarios (Dictionaries) `{}`
+## 3. Diccionarios (Dictionaries) `{}` - El Perfil del Jugador
 
-El Rey Midas de las estructuras lógicas. A diferencia de Listas y Tuplas que usan números índice (0, 1, 2) para encontrar cosas, los diccionarios usan **llaves y valores (Key-Value pairs)**, exactamente igual que un objeto JSON que verás en bases de datos NoSQL modernas.
+El **Rey Supremo** de las estructuras para guardar datos de la vida real.
+A diferencia de Listas y Tuplas que usan números índice (0, 1, 2) para encontrar tus cosas, los diccionarios usan **Llaves y Valores (Key-Value Key)**. Buscas por palabras exactas, exactamente como los guardados en la nube (JSON files).
 
 ```python
-empleado = {
-    "nombre": "Ana Smith",
-    "departamento": "Finanzas",
-    "sueldo": 4500,
-    "habilidades": ["Excel", "SQL", "Tableau"]  # ¡Una lista dentro de un diccionario!
+jugador_pro = {
+    "gamer_tag": "Tenz",
+    "equipo": "Sentinels",
+    "winrate": 65.5,
+    "main_agents": ["Jett", "Reyna", "Omen"]  # ¡Puedes meter una Lista DENTRO de un Diccionario!
 }
 
-# Consultar el diccionario
-print(empleado["departamento"])   # Imprime: Finanzas
+# Consultar un dato específico
+print(jugador_pro["equipo"])   # Imprime: Sentinels
 
-# Agregar nueva llave
-empleado["bono"] = 500
+# Agregar una nueva medalla al perfil
+jugador_pro["campeonatos_mundiales"] = 2
 ```
 
-Dominar cuándo usar una lista gigante vs un diccionario rápido separa a los analistas que colapsan sus ordenadores de los que no.
+Saber si tu monstruosa base de datos necesita una Lista Rápida o un Diccionario Preciso te separará de los noobs que crashean servidores por quedarse sin RAM.

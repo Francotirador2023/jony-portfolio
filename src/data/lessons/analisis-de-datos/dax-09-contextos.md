@@ -1,41 +1,35 @@
-# Filtros y el Mítico Contexto de Evaluación `CALCULATE()`
+# 🧙‍♂️ Filtros y el Modo Dios en DAX: `CALCULATE()`
 
-Llegamos al concepto que separa a los simples aficionados de los Másteres Arquitectos en Power BI. 
-*"El Contexto de Evaluación"*. ¿A qué nos referimos?
+Llegamos al jefe final. El concepto que separa a los Noobs de los Desarrolladores Senior en Power BI: *"El Contexto de Evaluación"*. ¿De qué trata esta brujería?
 
-Cuando tu gerente ve el Reporte de Ganancias, y en el lienzo principal donde se agrupan docenas de barras con montos por Producto hay un gran Segmentador/Buscador (Slicer) llamado "País", el momento en el que él tilda "[x] España", la barra que decía $1 Millón de `Pantalones` muta mágica y repentinamente diciendo $50,000 euros. 
+Imagina un Dashboard de *Valorant*. Tienes una barra gigante que muestra que se han hecho 1 Millón de Kills con tu arma favorita (Vandal).
+De pronto, en el menú (Slicer), el Dueño del Equipo hace clic en el filtro `[x] Jugador: TenZ`. Inmediatamente la gráfica baja y dice "5,000 Kills".
 
-Ese es el **Contexto de Filtro.** *(Filter Context).*
+Esa magia se llama **Contexto de Filtro.** *(Filter Context).*
 
-Son TODAS Las fuerzas mágicas en cadena que rodean visualmente el reporte, reduciendo a la tabla enorme subyacente hasta dejar nomas la filita de "España | Pantalón | 2024", solo para aplicar la Medida `SUM()` allí rapidísmo.
+Son TODAS Las fuerzas invisibles que empujan tu gráfica para reducir la enorme base de datos y mostrar **sólamente** el pedacito que el usuario seleccionó en ese microsegundo.
 
-## El Dios de DAX: La Función `CALCULATE()`
+## ⚡ El Modo Dios: La Función `CALCULATE()`
 
-¿Qué pasa si el gerente te pide: *"En toda circunstancia ponme una tarjeta estática global y muéstrame TODO LO ARROJADO DEL SISTEMA SIEMPRE TOTAL, no importa qué País cliquemos yo necesito el total para compararme de asco o no"*?
+Pero, ¿qué pasa si el Coach de tu equipo te pide: *"Quiero que al lado del KDA de TenZ, SIEMPRE me muestres las Kills Totales Máximas del Récord Mundial, para que él vea que aún le falta mucho"*?
 
-Tienes que ignorar los botones o las reducciones invisibles que te manda el Contexto de Filtro de Power BI y DAX.
+Si usas una fórmula normal, cuando cliques a "TenZ", Power BI la filtrará y romperá. Tienes que **IGNORAR los botones de filtro**. Activar el Modo Dios.
 
-**`CALCULATE()` a tu rescate**
-Es la única función nativa de DAX con esteroides diseñada explícitamente y expresamente para modificar, inyectar o bloquear los filtros estelares.
+**`CALCULATE()` al rescate**
+Es el único hechizo de todo DAX diseñado con permisos de "Super Administrador" para inyectar, romper o bloquear los filtros de tu pantalla.
 
-```dax
--- Función con 3 ingredientes en CALCULATE
--- 1. Expresión matemática.
--- 2, 3..n. Comandos Modificadores Estelares DAX (Rompen / Agregan Filtros)
-```
+### Rompiendo la Matrix (Ignorando Filtros con `ALL`)
 
-**Bloqueando TODA la Dimensión de Paises (ALL)**
-
-Con `ALL()` dentro de `CALCULATE`, quitamos temporalmente en el interior del cálculo de DAX este filtro molesto arrojando el universo entero de Paises original subyacente de la fuente nativa SQL... y el cálculo sale disparado en total.
+Si metemos `ALL()` dentro de nuestro `CALCULATE`, le diremos a DAX: *"Destruye temporalmente cualquier filtro que el usuario haya tocado sobre los Jugadores"*.
 
 ```dax
-Ventas_Globales_Nulas_A_Filtros_Locales =
+Kills_Globales_Inmunes_A_Filtros =
     CALCULATE(
-        [Ventas_Totales_Generales],
-        ALL(Geografia[Pais])
+        [Kills_Totales_Normales],
+        ALL(Jugadores[GamerTag]) -- El Escudo Protector
     )
 ```
 
-Si le das clic al país "Italia" en el Slicer, tu tarjeta global `Ventas_Totales_Globales` reirá internamente en voz bajita mostrando estrepitosamente sus $5M totales ignorando la bandera Verde Blanco y Roja. 
+Si le das clic a "TenZ" en tu menú de la pantalla, tu tarjeta de *Kills Inmunes* se reirá en voz bajita y se saltará las reglas, arrojando orgullosamente el billón de muertes de todo el servidor global, mientras que el resto de tu pantalla sí se filtra obedientemente para TenZ.
 
-Y de este modo se inician maravillas y pesadillas inexplorables (¡y divertidas!) de arquitectura BI pura.
+¡Felicidades, acabas de hackear Power BI a tu favor! Con este poder, puedes programar comparaciones increíbles en tus dashboards.

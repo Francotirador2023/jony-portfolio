@@ -1,53 +1,53 @@
-# Funciones de Agregación
+# 📊 Funciones de Agregación (Stats del Servidor)
 
-Las funciones de agregación son herramientas matemáticas en SQL que toman una columna entera de datos (múltiples filas) y la comprimen para devolver un único valor de resumen. Son el equivalente en bases de datos a las fórmulas que utilizarías en el final de una columna de Excel.
+Las funciones de agregación son como el "Resumen de Fin de Partida" de SQL. Toman una columna entera con millones de datos de los jugadores y la comprimen en un solo número global.
 
-## 1. Contar Filas (`COUNT`)
+## 1. Contar Filas (`COUNT`) - El Censo
 
-`COUNT` es, con diferencia, la función más utilizada. Nos permite responder preguntas como: "¿Cuántos clientes tenemos?" o "¿Cuántos pedidos se hicieron ayer?".
-
-```sql
--- Cuenta el número total de filas en la tabla Clientes.
-SELECT COUNT(*) AS Total_Clientes 
-FROM Clientes;
-```
-
-**Importante:** Si cuentas una columna específica (`COUNT(Salario)`), SQL ignorará las filas donde el salario sea `NULL`.
-
-## 2. Sumar Valores (`SUM`)
-
-Simplemente suma los valores numéricos de una columna.
+Es la habilidad más usada del juego. Responde preguntas como: "¿Cuántos usuarios se conectaron hoy?" o "¿Cuántos bots hemos baneado?".
 
 ```sql
--- ¿Cuánto hemos facturado en total histórico?
-SELECT SUM(Monto) AS Total_Ventas
-FROM Ventas;
+-- Cuenta absolutamente todo lo que hay en la tabla Servidor_NA
+SELECT COUNT(*) AS Jugadores_Totales 
+FROM Servidor_NA;
 ```
 
-*(Recuerda la lección de nulos: la suma de toda una columna será nula si no controlas los registros en blanco o al menos evitas sumar toda la tabla ciegamente).*
+> ⚠️ **Cuidado con los Nulos:** Si cuentas una columna específica (`COUNT(Skins_Legendarias)`), SQL ignorará a los jugadores que tengan un `NULL` en esa columna.
 
-## 3. Promedios (`AVG`)
+## 2. Sumar Valores (`SUM`) - El Botín Total
 
-Calcula la media aritmética (average) de una columna.
+Simplemente suma los valores matemáticos de toda una columna. Ideal para la economía del juego.
 
 ```sql
--- ¿Cuál es el sueldo promedio que pagamos en la empresa?
-SELECT AVG(Salario) AS Sueldo_Promedio 
-FROM Empleados;
+-- ¿Cuánto oro en total han farmeado TODOS los jugadores esta temporada?
+SELECT SUM(Oro_Firmeado) AS Economia_Global
+FROM Banco_Del_Juego;
 ```
 
-## 4. Máximos y Mínimos (`MAX`, `MIN`)
+## 3. Promedios (`AVG`) - El Average
 
-Encuentran el valor más alto y más bajo de una columna. No solo funcionan con números, ¡sino también con fechas y textos!
+Saca la media estadística (average) de una columna.
 
 ```sql
--- ¿Cuál es el producto más caro de nuestra tienda?
-SELECT MAX(Precio) AS Producto_Mas_Caro
-FROM Productos;
-
--- ¿Cuál es nuestro empleado más antiguo?
-SELECT MIN(Fecha_Contratacion) AS Empleado_Antiguo
-FROM Empleados;
+-- ¿Cuál es el KDA (Kills) promedio general de toda la comunidad?
+SELECT AVG(Kills) AS Promedio_Kills_Server 
+FROM Estadisticas_Partida;
 ```
 
-Estas funciones son esenciales. Sin embargo, ejecutándolas solas como hicimos aquí, siempre nos darán el resultado global (el total de *toda* la empresa). Para separar estos resultados por áreas (por país, departamento, etc.), necesitaremos aprender a "Agrupar", lo cual veremos en el próximo capítulo.
+## 4. Máximos y Mínimos (`MAX`, `MIN`) - Los Récords Mundiales
+
+Para buscar al Top 1 Global y al más noob, o el ítem más caro de la tienda. Funciona con números, fechas e incluso orden alfabético.
+
+```sql
+-- ¿Quién es el verdadero tryhard del juego? (Nivel más alto)
+SELECT MAX(Nivel_Cuenta) AS Maximo_Nivel_Alcanzado
+FROM Jugadores;
+
+-- ¿Cuál fue el primer jugador en crear su cuenta en la beta?
+SELECT MIN(Fecha_Creacion) AS Jugador_Mas_Viejo
+FROM Jugadores;
+```
+
+### 🎮 Micro-Reto Rápido
+Todas estas funciones nos están dando **un solo número** final para todo el servidor. Pero, ¿qué pasa si el CEO de Riot te dice: *"No quiero el promedio general. Quiero saber el Kills Promedio de **CADA RANGO** (Bronce, Plata, Oro...)"*? 
+¡Piensa cómo "partirías" la tabla antes de ir al siguiente capítulo!

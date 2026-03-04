@@ -1,50 +1,54 @@
-# Data Storytelling con Seaborn
+# 🔮 Seaborn: Los Shaders 4K Automáticos
 
-Si usabas *Matplotlib* puro, tu director financiero bostezaría ante la tosquedad visual de colores opacos o noventeros por defecto, a menos que pasaras tardes enteras personalizando la opacidad de los píxeles hexadecimales.
+Si usaras *Matplotlib* puro para presentarle tu dashboard al dueño del club de Esports, se quedaría dormido viendo colores azules opacos por defecto al menos que pasaras 4 horas programando códigos HEX para embellecer los bordes.
 
-**Seaborn** es una librería hermana escrita en Python expresamente encima de Matplotlib. Trabajan en equipo, pero Seaborn trae "El Buen Gusto Automático", temas maravillosos de color y algoritmos estadísticos al aire para que Python lo haga ver milenial, hermoso y *Data Storytelling* de alto nivel. 
+**Seaborn** es una librería creada expresamente *encima* de Matplotlib. Es como descargar un "Shader Pack / ENB" ultra realista para tu juego. Trae integrado "El Buen Gusto Automático", temas Dark Mode Neon, degradados exquisitos y curvas estadísticas... todo activable con un simple soplido.
 
-## 1. El Embellecimiento de una Línea (Magic Line)
+## 1. Hackeando la curva: Data Storytelling
 
-Seaborn se comunica telepáticamente con *Pandas DataFrames* por vocación pura. No ocupas "separar" el eje X del Eje Y como en lo hacías a pelo en la clase anterior. Simplemente le avientas la Base de Datos con el nombre del Excel... le dices cómo se llaman las columnas y él lo arma automáticamente solo.
+Seaborn se comunica telepáticamente con *Pandas*. Ya no necesitas separar manualmente el Eje X del Y como cavernícola. Solo le arrojas por la cara todo el DataFrame completo, le dices cómo se llaman las columnas de tu Excel, y él crea la Obra de Arte solo.
 
 ```python
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Imagina que leemos un archivo gigante.
-df = pd.read_csv("historico_clientes_2024.csv")
+# 1. Leemos 1 millón de partidas Ranked
+df = pd.read_csv("ranked_history_2026.csv")
 
-# Poner en la sala los temas Hermosos Dark Neon por Defecto
+# 2. Encendemos el Shader Nocturno Hermoso por Defecto (Dark UI)
 sns.set_theme(style="darkgrid")
 
-# Pintar todo el archivo, diferenciando el color de curva según el "Tipo de Membresia VIP o Standar" (hue)
+# 3. Pintar todo el archivo, con un 'Aura' de colores distintos para cada Rol del Jugador (hue)
 sns.lineplot(
     data=df, 
     x="Mes", 
-    y="Total_Compras_USD", 
-    hue="Estado_Membresia" 
+    y="WinRate", 
+    hue="Main_Rol" # [Mago, Tanque, Soporte, Tirador]
 )
 
-# El último print obligatorio visual
+# 4. Soltar la bomba a la pantalla
 plt.show()
 ```
 
-Esa simple "línea de 3 renglones" de Seaborn lograría automáticamente generar la *Leyenda de Colores*, el trazado diferencial para "VIPs", el suavizado de curva de medias móviles y el intervalo de confianza estadístico difuminado semitransparente... cosas que en Matplotlib te rogarían 45 líneas de puras tuercas crudas de C++.
+Esta mini-genialidad de código logrará instantáneamente:
+- Separar cada "Rol del juego" en una línea de color distinta (Tanques en verde, Magos en morado).
+- Crear un cuadrito bonito (Leyenda) arriba a la derecha.
+- Crear sombras borrosas (intervalos de confianza estadísticos) alrededor de las líneas.
+(Hacer esto en Matplotlib puro te obligaría a picar 60 líneas crudas de programación destructiva).
 
-## 2. Mapa de Calor (Heatmaps)
+## 2. El Radar Térmico (Heatmap)
 
-En Exploratory Data Analysis corporativo, hay un Rey del Diagnostico Inicial: El Gráfico de Correlación. Te indica velozmente qué Variable impacta duramente en el crecimiento de la empresa.
+En E-sports y Data Science pura, usamos Correlaciones Diabólicas para descubrir qué "Stat" influye más en que un jugador gane la partida.
 
 ```python
-# Sacamos la matriz cruzada -1.00 hasta 1.00 de Pandas
-correlacion_matriz = df.corr()
+# Cruzamos matemáticamente toda la tabla para buscar qué stats van de la mano
+matriz_radar = df.corr()
 
-# Trazamos un Mosaico visual alucinante con Anotaciones en cada cuadradito (annot=True) y Colores Rojos/Azules de temperatura (`cmap="coolwarm"`)
-
-sns.heatmap(correlacion_matriz, annot=True, cmap="coolwarm")
+# Trazamos un Mosaico de Temperatura con números (annot=True) y colores ardientes / fríos (cmap="coolwarm")
+sns.heatmap(matriz_radar, annot=True, cmap="coolwarm")
 plt.show()
 ```
+El Radar Térmico te gritará visualmente si hay manchas en ROJO FUEGO. Por ejemplo: una mancha roja fuego brutal conectando cruzadamente los "Clicks por Segundo (APM)" con el "WinPercentage". Descubriendo el secreto de la victoria en 2 segundos visuales.
 
-> **Trucos del Senior Analytics Boss:** Usa Seaborn el 90% de tus jornadas para impresionar y analizar rápidamente el 50,000% más veloz. Pero no abandones Matplotlib, lo seguirás requiriendo si en esos tableros de Seaborn necesitas forzosamente alterar una pequeña fuente o letra títulada rebelde del Eje Y final superior. Trabajan y conviven en el mismo script en armonía.
+> 👑 **Consejo del Head Coach de Datos:** Usa Seaborn el 90% del tiempo. Tu trabajo volará mentes en las presentaciones al nivel *Cyberpunk*. Pero jamás olvides Matplotlib, pues Seaborn vive DENTRO de él, y si necesitas forzar alguna perilla técnica, Matplotlib siempre seguirá corriendo las tuercas reales por debajo del capó.

@@ -1,52 +1,51 @@
-# Inteligencia de Tiempo (Time Intelligence)
+# ⏳ Viajes en el Tiempo (Time Intelligence)
 
-¿Alguna vez te ha pedido tu gerente financiero ver: *"El margen de cierre de este Mes Comparativamente vs el Mismo exacto Mes pero del Año Anterior"*?
+¿Alguna vez te han pedido algo rudo como: *"Muéstrame exactamente cuánto KDA tenía este equipo de Esports el año pasado comparado matemáticamente con este mismo mes del año actual"*?
 
-Hacer eso en SQL puro es horrible con `LEFT JOINs` locos entre fechas. En DAX, esto apenas toma dos renglones gracias a la familia mágica de funciones de **Time Intelligence**.
+Si quisieras hacer esto en bases de datos viejas o en programación cruda, sufrirías horas con cálculos horribles para retrasar días y cruzar variables. DAX te hace todo en **dos miserables líneas** usando sus funciones mágicas de **Time Intelligence**.
 
-## El Requisito de Oro: Tu Dimensión Calendario
-Las funciones de inteligencia de tiempo en Power BI fracasarán rotundamente si tus fechas están repartidas o escondidas en la enorme tabla de Hechos de Ventas. 
+## ⏰ El Requisito de Oro: Tu Reloj del Servidor
 
-**Deberás siempre, SIEMPRE, tener una única Tabla DIMENSIÓN exclusiva que se llame `Calendario`**, que sea un catálogo ininterrumpido de todos los días de historia de tu empresa que vincule de ida y vuelta a todos tus Tableros en el Modelo de Estrella maestro nativo.
+Las funciones de viajes en el tiempo de Power BI fracasarán y causarán pantallas de error azules si intentas usarlas con las fechas tiradas en tu tabla de partidas.
 
-## Funciones Totales a la Fecha (YTD, QTD, MTD)
+Debes **SIEMPRE** crear una Dimensión exclusiva llamada `Calendario` (Date Table). Es un listado infinito e ininterrumpido (sin saltarse un solo día) desde que nació tu empresa hasta el futuro, y debe estar conectada como parte de tu genial Hub de Misiones (Esquema en Estrella). 
 
-Calculan el acumulado sumando desde el día 1 del período hasta la fecha analizada de filtro vivo por los gerentes.
+## 🔋 Buffs de Acumulación (YTD - Year-To-Date)
 
-### Year-To-Date (Total Acumulado del Año Actual)
-Suma desde el 1 de Enero hasta la barra actual de los gráficos filtrados interactivamente. Se reinicia solita el próximo 1 de Enero infinito.
+Los directivos no quieren ver el mes suelto, quieren ver los **Puntos Acumulados de la Temporada** (Desde el 1 de Enero hasta tu fecha actual).
 
 ```dax
-Ventas_YTD = TOTALYTD([Tus_Ventas_Arrojadas_en_Medida_DAX], Calendario[Fecha])
+-- Suma todas las kills arrastrando la bola de nieve desde enero hasta hoy
+Kills_Acumuladas_YTD = TOTALYTD([Tus_Kills_De_La_Medida_DAX], Calendario[Fecha])
 ```
+*(Esta fórmula súper inteligente sabe que al llegar cada 31 de diciembre a la medianoche, se debe resetear a Cero para la nueva Temporada).*
 
-## Comparaciones Históricas (Al Pasado)
+## ⏪ Viajes al Pasado (Same Period Last Year)
 
-### Mismo Periodo pero un Año Atrás (Same Period Last Year)
-
-Calculadora histórica inmediata que busca retroceder "un salto en el calendario". 
-Imagina que filtramos Marzo 2024. DAX agarra y automáticamente calcula todo ocultamente asumiendo que el universo es Marzo de 2023.
+Es tu máquina del tiempo. Te permite clonar tus métricas actuales, pero forzándolas a mostrarte cuánto eran un "salto de calendario" entero atrás.
+Si tu Dashboard está filtrando "Abril 2026", la fórmula ocultamente calculará todo con "Abril 2025".
 
 ```dax
-Ventas_Anio_Anterior = 
+-- Copia de tus datos del pasado para ponerlos al fin hoy en la misma gráfica
+Ventas_Oro_Temporada_Pasada = 
     CALCULATE(
-        [Tus_Ventas_Arrojadas_en_Medida_DAX],
+        [Tus_Ventas_De_Oro_Actuales],
         SAMEPERIODLASTYEAR(Calendario[Fecha])
     )
 ```
 
-## Crecimiento Porcentual (YoY - Year over Year Growth)
+## 📈 Crecimiento (YoY - Year over Year Growth)
 
-Ahora que tienes la Medida del año actual y la Medida del año pasado, puedes hacer el Santo Grial.
-*(Por ser DAX mágico, si el cliente hace clic en un producto 'Pantalones', esta madre arrojará el YoY de sólo 'Pantalones' sin inmutarse de todo el cálculo).*
+Ahora que lograste invocar al "Yo del Presente" y al "Yo del Pasado" en la base de datos... puedes crear el número que todo dueño (de empresa o de E-sports) quiere ver: ¿Cuánto porcentaje hemos mejorado (o empeorado)?
 
 ```dax
 Crecimiento_Anual_% = 
     DIVIDE(
-        [Ventas_YTD] - [Ventas_Anio_Anterior],
-        [Ventas_Anio_Anterior],
+        [Ventas_YTD] - [Ventas_Oro_Temporada_Pasada],  -- Crecimiento Crudo
+        [Ventas_Oro_Temporada_Pasada],                 -- Entre mi "Yo del Pasado"
         0
     )
 ```
+Como Power BI funciona con medidas DAX, si en tu Dashboard tocas el rol de "Soportes", **toda esta maldita magia matemática** se actualizará al instante arrojando el Crecimiento Anual EXCLUSIVAMENTE de los roles de Soporte. 
 
-¡Has aprendido cómo piensa la magia histórica gerencial financiera sin morir de sufrimiento de macro Excels!
+¡Ahí radica el por qué las empresas pagan oro puro por un analista que domina DAX!

@@ -57,9 +57,9 @@ export const coursesData = {
     },
     'analisis-de-datos': {
         slug: 'analisis-de-datos',
-        title: 'Análisis de Datos con Excel y BI',
-        description: 'Transforma datos crudos en historias visuales y decisiones estratégicas. Empezaremos dominando las herramientas más poderosas de Excel para luego avanzar hacia soluciones empresariales completas utilizando Power BI o Tableau. Un recorrido indispensable para estructurar la forma en que ves el mundo empresarial a través de métricas.',
-        level: 'Intermedio',
+        title: 'Power BI: Análisis de Datos Pro',
+        description: 'Transforma datos crudos en historias visuales y decisiones estratégicas. Empezaremos dominando la importación y limpieza de datos con Power Query, avanzaremos hacia el modelado experto con DAX y finalizaremos creando Dashboards impactantes. Un recorrido técnico indispensable para estructurar la forma en que ves el negocio a través de métricas.',
+        level: 'De Cero a Intermedio',
         duration: '6 Semanas (45 horas estimadas)',
         students: '850+',
         rating: 4.9,
@@ -75,11 +75,11 @@ export const coursesData = {
         ],
         syllabus: [
             {
-                title: 'Módulo 1: Excel como Motor de Análisis',
+                title: 'Módulo 1: Introducción y Power Query',
                 lessons: [
-                    { id: 'excel-01-formulas', title: 'Fórmulas avanzadas (BUSCARV, INDICE, COINCIDIR)' },
-                    { id: 'excel-02-tablas-dinamicas', title: 'Tablas dinámicas y segmentación' },
-                    { id: 'excel-03-power-query', title: 'Power Query en Excel' }
+                    { id: 'bi-01-intro', title: 'Power BI Desktop: Interfaz y Carga de Datos' },
+                    { id: 'bi-02-transformacion', title: 'ETL: Limpieza Básica en Power Query' },
+                    { id: 'bi-03-merge-append', title: 'Unir (Merge) y Anexar (Append) Consultas' }
                 ]
             },
             {
