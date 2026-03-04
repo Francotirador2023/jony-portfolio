@@ -17,13 +17,20 @@ const CourseCard = ({ course }) => {
             <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
             {/* Header / Banner */}
-            <div className={`h-40 bg-gradient-to-tr ${course.color} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-black/20" />
+            <div
+                className={`h-40 relative overflow-hidden ${!course.thumbnail ? `bg-gradient-to-tr ${course.color}` : 'bg-cover bg-center'}`}
+                style={course.thumbnail ? { backgroundImage: `url(${course.thumbnail})` } : {}}
+            >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-10">
-                    <div className="bg-dark-bg/80 backdrop-blur-md p-2 rounded-lg border border-white/10">
-                        <course.icon className="w-8 h-8 text-white" />
+                    <div className="bg-dark-bg/80 backdrop-blur-md p-2.5 rounded-xl border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                        {course.brandLogo ? (
+                            <img src={course.brandLogo} alt={`${course.title} logo`} className="w-8 h-8 object-contain drop-shadow-lg" />
+                        ) : (
+                            <course.icon className="w-8 h-8 text-white relative z-10 drop-shadow-md" />
+                        )}
                     </div>
-                    <span className="px-3 py-1 bg-dark-bg/80 backdrop-blur-md text-xs font-medium text-white rounded-full border border-white/10">
+                    <span className="px-3 py-1 bg-dark-bg/80 backdrop-blur-md text-xs font-semibold text-white rounded-full border border-white/10 shadow-lg">
                         {course.level}
                     </span>
                 </div>

@@ -12,7 +12,9 @@ export const coursesData = {
         modules: 4,
         tags: ['SQL Server', 'PostgreSQL', 'Modelado ER'],
         icon: Database,
+        brandLogo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg',
         color: 'from-blue-600 to-cyan-500',
+        thumbnail: '/images/courses/sql_bg.png',
         introVideoUrl: '',
         features: [
             'Acceso de por vida a las actualizaciones',
@@ -66,7 +68,9 @@ export const coursesData = {
         modules: 4,
         tags: ['Excel Avanzado', 'Power BI / Tableau', 'Data Storytelling'],
         icon: BarChart3,
+        brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg',
         color: 'from-emerald-600 to-teal-400',
+        thumbnail: '/images/courses/bi_bg.png',
         features: [
             'Plantillas de Excel y Dashboards iniciales',
             'Flujos de ETL (Extract, Transform, Load)',
@@ -119,7 +123,9 @@ export const coursesData = {
         modules: 4,
         tags: ['Python', 'Pandas & NumPy', 'Visualización'],
         icon: Terminal,
+        brandLogo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg',
         color: 'from-amber-500 to-orange-400',
+        thumbnail: '/images/courses/python_bg.png',
         introVideoUrl: '',
         features: [
             'Proyectos guiados de análisis reales',
