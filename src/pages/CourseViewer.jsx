@@ -290,15 +290,15 @@ const CourseViewer = () => {
                                     h2: ({ children }) => <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mt-12 mb-6 flex items-center before:content-[''] before:w-2 before:h-8 before:bg-primary-500 before:mr-4 before:rounded-sm">{children}</h2>,
                                     blockquote: ({ children }) => <blockquote className="border-l-4 border-indigo-500 bg-indigo-500/10 px-6 py-4 rounded-r-xl italic my-8 text-gray-300 shadow-inner">{children}</blockquote>,
                                     img: ({ src, alt }) => (
-                                        <figure className="my-10 flex flex-col items-center">
+                                        <span className="my-10 flex flex-col items-center">
                                             <img
                                                 src={src}
                                                 alt={alt}
                                                 className="rounded-xl border border-white/10 shadow-2xl shadow-black/50 w-full object-cover max-h-[500px]"
                                                 loading="lazy"
                                             />
-                                            {alt && <figcaption className="text-sm text-gray-500 mt-3 text-center italic">{alt}</figcaption>}
-                                        </figure>
+                                            {alt && <span className="text-sm text-gray-500 mt-3 text-center italic block">{alt}</span>}
+                                        </span>
                                     )
                                 }}
                             >
