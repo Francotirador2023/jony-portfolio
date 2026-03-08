@@ -121,7 +121,7 @@ const CourseViewer = () => {
     const { executePython, isReady: isPythonReady } = usePyodide();
 
     const [markdownData, setMarkdownData] = useState('');
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [isCompletionModalOpen, setIsCompletionModalOpen] = useState(false);
 
@@ -252,8 +252,8 @@ const CourseViewer = () => {
             </aside>
 
             {/* Main Content Area */}
-            <main className="flex-1 w-full lg:w-[calc(100%-20rem)] bg-dark-bg min-h-[calc(100vh-4rem)] pb-24">
-                <div className="max-w-4xl mx-auto px-6 lg:px-12 py-10">
+            <main className="flex-1 w-full lg:w-[calc(100%-20rem)] bg-dark-bg min-h-[calc(100vh-4rem)] pb-24 overflow-x-hidden">
+                <div className="max-w-4xl mx-auto px-6 lg:px-12 py-10 w-full">
 
                     {/* Content Renderer */}
                     {loading ? (
