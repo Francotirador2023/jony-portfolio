@@ -8,8 +8,11 @@ import mlopsBanner from '../assets/mlops_banner.png';
 
 import heartBanner from '../assets/heart_disease_banner.png';
 
-const ProjectCard = ({ title, description, tags, link, github, type, image }) => (
-    <div className="bg-dark-card rounded-xl overflow-hidden border border-white/5 hover:border-primary-500/50 transition-all duration-300 group hover:-translate-y-2">
+const ProjectCard = ({ title, description, tags, link, github, type, image, reportUrl }) => (
+    <div 
+        onClick={() => window.open(reportUrl, '_blank')}
+        className="bg-dark-card rounded-xl overflow-hidden border border-white/5 hover:border-primary-500/50 transition-all duration-300 group hover:-translate-y-2 cursor-pointer relative"
+    >
         <div className="h-48 bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden group-hover:brightness-110 transition-all">
             {/* Image or Abstract presentation */}
             {image ? (
@@ -26,6 +29,13 @@ const ProjectCard = ({ title, description, tags, link, github, type, image }) =>
                 </div>
             )}
             <div className="absolute inset-0 bg-primary-600/10 group-hover:bg-primary-600/0 transition-colors" />
+            
+            {/* Overlay hint: Ver Informe */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-primary-900/40 backdrop-blur-sm">
+                <span className="bg-white text-primary-900 px-4 py-2 rounded-full font-bold text-sm shadow-xl flex items-center gap-2">
+                    <ExternalLink className="w-4 h-4" /> Ver Informe PDF
+                </span>
+            </div>
         </div>
 
         <div className="p-6">
@@ -53,20 +63,14 @@ const ProjectCard = ({ title, description, tags, link, github, type, image }) =>
                     href={github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors relative z-10"
                 >
                     <Github className="w-4 h-4" /> Código
                 </a>
-                {link && (
-                    <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-primary-400 hover:text-primary-300 transition-colors ml-auto"
-                    >
-                        Ver Demo <ExternalLink className="w-4 h-4" />
-                    </a>
-                )}
+                <div className="flex items-center gap-2 text-sm text-primary-400 group-hover:text-primary-300 transition-colors ml-auto">
+                    Detalles <ExternalLink className="w-4 h-4" />
+                </div>
             </div>
         </div>
     </div>
@@ -81,6 +85,7 @@ const Projects = () => {
             description: "Sistema híbrido de IA para triaje cardíaco. Segmentación de pacientes con K-Means (No Supervisado) y predicción de riesgo clínico con Random Forest. Análisis automatizado y simulación de diagnósticos.",
             tags: ["Python", "Scikit-Learn", "Pandas", "K-Means", "Random Forest"],
             github: "https://github.com/Francotirador2023/tp-final-ml",
+            reportUrl: "/reports/heart_disease_report.pdf",
             image: heartBanner
         },
         {
@@ -89,6 +94,7 @@ const Projects = () => {
             description: "Scripts en Python para la limpieza, transformación y carga automática de grandes volúmenes de datos. Optimización de flujos de trabajo repetitivos reduciendo tiempos de procesamiento.",
             tags: ["Python", "SQL", "Pandas", "Automation"],
             github: "https://github.com/Francotirador2023/etl-sales-pipeline",
+            reportUrl: "/reports/etl_automation_report.pdf",
             image: etlBanner
         },
         {
@@ -97,6 +103,7 @@ const Projects = () => {
             description: "Dashboard integral en Power BI para análisis de ventas y servicios. Incluye procesos ETL con Power Query, modelado de datos en estrella y métricas DAX avanzadas para identificar tendencias y optimizar el rendimiento.",
             tags: ["Power BI", "DAX", "ETL", "Data Modeling"],
             github: "https://github.com/Francotirador2023/bi-dashboards",
+            reportUrl: "/reports/vet_dashboard_report.pdf",
             image: biDashboard
         },
         {
@@ -105,6 +112,7 @@ const Projects = () => {
             description: "Pipeline ELT completo orquestado con Airflow en Docker. Extracción de API de criptomonedas, Data Warehouse en Postgres y transformación analítica con dBT. Visualización de tendencias en Metabase.",
             tags: ["Airflow", "Docker", "dBT", "Postgres", "Metabase"],
             github: "https://github.com/Francotirador2023/modern-data-stack",
+            reportUrl: "/reports/crypto_etl_report.pdf",
             image: mdsBanner
         },
         {
@@ -113,6 +121,7 @@ const Projects = () => {
             description: "Pipeline End-to-End para predicción de precios inmobiliarios. Entrenamiento con Scikit-Learn, API productiva con FastAPI y validación Pydantic. Todo dockerizado y servido mediante Dashboard interactivo en Streamlit.",
             tags: ["Python", "FastAPI", "Docker", "Streamlit", "Scikit-Learn"],
             github: "https://github.com/Francotirador2023/mlops-price-predictor",
+            reportUrl: "/reports/mlops_price_predictor_report.pdf",
             image: mlopsBanner
         }
     ];
