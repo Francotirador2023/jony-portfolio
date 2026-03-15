@@ -1,0 +1,61 @@
+Project Proposal
+CardioCare – Cardiac Monitoring Application
+1. Project Name
+CardioCare – Smart Cardiac Monitoring Application
+2. Project Description
+CardioCare is a mobile and web-based medical application designed to help doctors monitor the heart health of patients remotely. The system will collect cardiac data such as heart rate and rhythm through wearable devices and send the information directly to doctors through a secure digital platform.
+This solution will allow doctors to detect potential cardiac problems early and provide faster medical assistance.
+3. Objectives
+General ObjectiveDevelop a digital medical platform that allows doctors to monitor patients' cardiac health in real time.
+Specific Objectives
+Improve communication between patients and doctors.
+Provide real-time cardiac monitoring.
+Reduce the risk of undetected heart problems.
+Facilitate remote medical supervision.
+4. Vision
+To become a leading digital health solution in Peru that improves cardiac care through innovative medical technology.
+5. Mission
+To develop reliable and accessible healthcare technology that allows doctors to monitor patients' heart conditions efficiently and safely.
+6. Target Users
+Cardiologists
+General doctors
+Patients with heart conditions
+Hospitals and clinics
+7. Main Features of the Product
+Real-time heart rate monitoring
+Patient medical history management
+Automatic alerts for abnormal heart activity
+Secure communication between doctor and patient
+Data visualization and reports
+8. Project Duration
+Estimated Duration: 6 months
+Phase
+Time
+Project planning
+2 weeks
+System design
+1 month
+Application development
+3 months
+Testing and validation
+1 month
+Implementation
+2 weeks
+9. Resources Needed
+Human Resources
+Software developer
+Medical consultant (cardiologist)
+Mobile application developer
+Project manager
+Technological Resources
+Mobile development platform
+Cloud server for data storage
+Medical wearable devices
+Secure database system
+10. Expected Benefits
+Early detection of cardiac problems
+Improved patient monitoring
+Better communication between doctors and patients
+Increased efficiency in healthcare services
+11. Estimated Budget
+Approximate budget: $30,000 – $50,000 depending on the technological infrastructure and development team.
