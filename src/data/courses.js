@@ -1,4 +1,4 @@
-import { Database, BarChart3, Terminal } from 'lucide-react';
+import { Database, BarChart3, Terminal, Layout } from 'lucide-react';
 
 export const coursesData = {
     'sql-desde-cero': {
@@ -164,6 +164,62 @@ export const coursesData = {
                     { id: 'py-10-matplotlib', title: 'Gráficos base con Matplotlib' },
                     { id: 'py-11-seaborn', title: 'Data Storytelling con Seaborn' },
                     { id: 'py-12-proyecto', title: 'Proyecto Final' }
+                ]
+            },
+        ]
+    },
+    'presentaciones-web': {
+        slug: 'presentaciones-web',
+        title: 'Presentaciones Web: Visualización de Datos',
+        description: 'Lleva tus análisis al siguiente nivel aprendiendo a crear dashboards interactivos y presentaciones impactantes directamente en el navegador. En este curso aprenderás a integrar gráficos de Python y Power BI en entornos web, dominando librerías modernas de visualización y principios de diseño UX para datos.',
+        level: 'Intermedio',
+        duration: '4 Semanas (30 horas estimadas)',
+        students: 'NEW',
+        rating: 5.0,
+        modules: 4,
+        tags: ['HTML/CSS', 'JavaScript', 'D3.js', 'Dashboards'],
+        icon: Layout,
+        brandLogo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+        color: 'from-indigo-600 to-purple-500',
+        thumbnail: '/images/courses/web_bg.png',
+        introVideoUrl: '',
+        features: [
+            'Creación de dashboards interactivos',
+            'Integración con Python y Power BI',
+            'Certificado de finalización',
+            'Acceso a plantillas de diseño exclusivas'
+        ],
+        syllabus: [
+            {
+                title: 'Módulo 1: Fundamentos de Visualización Web',
+                lessons: [
+                    { id: '01-introduccion-web', title: 'Anatomía de una visualización web' },
+                    { id: '02-svg-canvas', title: 'SVG vs Canvas: ¿Cuándo usar cada uno?' },
+                    { id: '03-diseno-responsivo', title: 'Diseño responsivo para gráficos' }
+                ]
+            },
+            {
+                title: 'Módulo 2: Librerías de Visualización (JS)',
+                lessons: [
+                    { id: '04-chartjs-basico', title: 'Gráficos rápidos con Chart.js' },
+                    { id: '05-plotly-interactivo', title: 'Interactividad avanzada con Plotly.js' },
+                    { id: '06-intro-d3js', title: 'Introducción a D3.js' }
+                ]
+            },
+            {
+                title: 'Módulo 3: Integración Python & BI',
+                lessons: [
+                    { id: '07-streamlit-apps', title: 'Web apps rápidas con Streamlit' },
+                    { id: '08-powerbi-embedded', title: 'Introducción a Power BI Embedded' },
+                    { id: '09-apis-json', title: 'Consumiendo datos desde APIs (JSON)' }
+                ]
+            },
+            {
+                title: 'Módulo 4: Despliegue y UX',
+                lessons: [
+                    { id: '10-optimizacion-rendimiento', title: 'Optimización de carga de datos' },
+                    { id: '11-storytelling-web', title: 'Scrolltelling: Narrativa guiada por datos' },
+                    { id: '12-despliegue-final', title: 'Despliegue de tu portafolio' }
                 ]
             },
         ]
