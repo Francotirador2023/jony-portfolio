@@ -171,8 +171,8 @@ export const coursesData = {
     'presentaciones-web': {
         slug: 'presentaciones-web',
         title: 'Presentaciones Web: Visualización de Datos',
-        description: 'Lleva tus análisis al siguiente nivel aprendiendo a crear dashboards interactivos y presentaciones impactantes directamente en el navegador. En este curso aprenderás a integrar gráficos de Python y Power BI en entornos web, dominando librerías modernas de visualización y principios de diseño UX para datos.',
-        level: 'Intermedio',
+        description: 'Lleva tus análisis al siguiente nivel aprendiendo a crear dashboards interactivos y presentaciones impactantes directamente en el navegador. Diseñado especialmente para principiantes sin experiencia en programación, aprenderás desde las bases de HTML y CSS hasta integrar gráficos dinámicos de Python y Power BI, dominando librerías modernas de visualización.',
+        level: 'Principiante a Intermedio',
         duration: '4 Semanas (30 horas estimadas)',
         students: 'NEW',
         rating: 5.0,
@@ -191,35 +191,35 @@ export const coursesData = {
         ],
         syllabus: [
             {
-                title: 'Módulo 1: Fundamentos de Visualización Web',
+                title: 'Módulo 1: Fundamentos de Desarrollo Web (HTML & CSS)',
                 lessons: [
-                    { id: '01-introduccion-web', title: 'Anatomía de una visualización web' },
-                    { id: '02-svg-canvas', title: 'SVG vs Canvas: ¿Cuándo usar cada uno?' },
-                    { id: '03-diseno-responsivo', title: 'Diseño responsivo para gráficos' }
+                    { id: '01-html-basico', title: 'Mi primera página web (HTML5)' },
+                    { id: '02-css-diseno', title: 'Estilo y Diseño Visual (CSS)' },
+                    { id: '03-diseno-responsivo', title: 'Diseño Adaptable (Flexbox y Grid)' }
                 ]
             },
             {
-                title: 'Módulo 2: Librerías de Visualización (JS)',
+                title: 'Módulo 2: Interactividad y Gráficos Básicos (JS & SVG)',
                 lessons: [
-                    { id: '04-chartjs-basico', title: 'Gráficos rápidos con Chart.js' },
-                    { id: '05-plotly-interactivo', title: 'Interactividad avanzada con Plotly.js' },
-                    { id: '06-intro-d3js', title: 'Introducción a D3.js' }
+                    { id: '04-javascript-dom', title: 'Interactividad con JavaScript y el DOM' },
+                    { id: '05-dibujo-vectorial', title: 'Dibujando en la Web: SVG y Canvas' },
+                    { id: '06-chartjs-basico', title: 'Gráficos Rápidos con Chart.js' }
                 ]
             },
             {
-                title: 'Módulo 3: Integración Python & BI',
+                title: 'Módulo 3: Interactividad Avanzada y Conexión de Datos',
                 lessons: [
-                    { id: '07-streamlit-apps', title: 'Web apps rápidas con Streamlit' },
-                    { id: '08-powerbi-embedded', title: 'Introducción a Power BI Embedded' },
-                    { id: '09-apis-json', title: 'Consumiendo datos desde APIs (JSON)' }
+                    { id: '07-plotly-interactivo', title: 'Interactividad Avanzada con Plotly.js' },
+                    { id: '08-intro-d3js', title: 'Introducción a D3.js' },
+                    { id: '09-apis-json', title: 'Consumiendo Datos (APIs y JSON)' }
                 ]
             },
             {
-                title: 'Módulo 4: Despliegue y UX',
+                title: 'Módulo 4: Web Apps Rápidas y Despliegue Profesional',
                 lessons: [
-                    { id: '10-optimizacion-rendimiento', title: 'Optimización de carga de datos' },
-                    { id: '11-storytelling-web', title: 'Scrolltelling: Narrativa guiada por datos' },
-                    { id: '12-despliegue-final', title: 'Despliegue de tu portafolio' }
+                    { id: '10-streamlit-apps', title: 'Web Apps Rápidas con Streamlit' },
+                    { id: '11-powerbi-embedded', title: 'Integración con Power BI Embedded' },
+                    { id: '12-despliegue-final', title: 'Tu Portafolio y Despliegue Final' }
                 ]
             },
         ]
