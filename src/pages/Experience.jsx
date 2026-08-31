@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, GraduationCap, Calendar } from 'lucide-react';
 
-const TimelineItem = ({ title, organization, date, type, description, isLast }) => (
+const TimelineItem = ({ title, organization, date, type, description, technologies, isLast }) => (
     <div className="relative pl-8 md:pl-0 md:grid md:grid-cols-2 md:gap-10 group">
         {/* Line */}
         {!isLast && (
@@ -26,16 +26,29 @@ const TimelineItem = ({ title, organization, date, type, description, isLast }) 
                 {type === 'work' ? <Briefcase className="w-5 h-5 text-primary-400" /> : <GraduationCap className="w-5 h-5 text-indigo-400" />}
                 <h3 className="text-xl font-bold text-white font-heading">{title}</h3>
             </div>
-            <h4 className="text-lg text-gray-300 mb-4">{organization}</h4>
+            <h4 className="text-lg text-gray-300 mb-3">{organization}</h4>
 
-            {description && (
-                <ul className="space-y-2">
+            {description && description.length > 0 && (
+                <ul className="space-y-2 mb-4">
                     {description.map((item, idx) => (
                         <li key={idx} className="text-gray-400 text-sm pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-primary-500">
                             {item}
                         </li>
                     ))}
                 </ul>
+            )}
+
+            {technologies && technologies.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                    {technologies.map((tech, idx) => (
+                        <span
+                            key={idx}
+                            className="px-2.5 py-0.5 text-xs font-medium bg-white/5 text-gray-300 rounded-md border border-white/10 group-hover:border-primary-500/30 group-hover:text-primary-300 transition-colors duration-300"
+                        >
+                            {tech}
+                        </span>
+                    ))}
+                </div>
             )}
         </div>
     </div>
@@ -45,6 +58,27 @@ const Experience = () => {
     const items = [
         {
             type: 'work',
+            title: 'Asesor en Desarrollo de APIs',
+            organization: 'Ccapac Sistemas',
+            date: '2026 – Presente',
+            description: [
+                'Asesoramiento técnico y consultoría en arquitectura, diseño y desarrollo de APIs y microservicios.',
+                'Optimización de servicios backend y aseguramiento de buenas prácticas de integración.'
+            ],
+            technologies: ['PHP', 'Angular', 'API REST', 'Microservicios']
+        },
+        {
+            type: 'education',
+            title: 'Ing. de Sistemas Computacionales',
+            organization: 'Universidad Privada del Norte (UPN)',
+            date: '2026 – Presente',
+            description: [
+                'Actualmente cursando la carrera profesional universitaria.'
+            ],
+            technologies: ['Ingeniería de Software', 'Arquitectura de Sistemas', 'Estructuras de Datos', 'Gestión de TI']
+        },
+        {
+            type: 'work',
             title: 'Analista de Datos',
             organization: 'Toulouse Lautrec — Lima, Perú',
             date: 'Octubre 2024 – Junio 2025',
@@ -52,28 +86,38 @@ const Experience = () => {
                 'Limpieza, transformación y análisis de grandes conjuntos de datos con Python y SQL.',
                 'Desarrollo de informes y dashboards interactivos en Power BI y Tableau.',
                 'Automatización de procesos repetitivos mediante scripts en Python.'
-            ]
-        },
-        {
-            type: 'education',
-            title: 'Técnico en Desarrollo de Sistemas de Información',
-            organization: 'Instituto Sabio Nacional Antúnez de Mayolo',
-            date: '2022 – Presente',
-            description: ['Actualmente en 5.º ciclo.']
-        },
-        {
-            type: 'education',
-            title: 'Data Science y Machine Learning — Specialty',
-            organization: 'Toulouse Lautrec',
-            date: '2024 – 2025',
-            description: []
+            ],
+            technologies: ['Python', 'SQL', 'Power BI', 'Tableau', 'Automatización de Procesos']
         },
         {
             type: 'education',
             title: 'Ciencia de Datos aplicada a la Logística — Specialty',
             organization: 'Ingenium',
             date: '2025',
-            description: []
+            description: [
+                'Especialización en análisis predictivo, optimización de cadena de suministro y toma de decisiones basada en datos.'
+            ],
+            technologies: ['Python', 'Machine Learning', 'Optimización Logística', 'Power BI', 'Modelado de Datos']
+        },
+        {
+            type: 'education',
+            title: 'Data Science y Machine Learning — Specialty',
+            organization: 'Toulouse Lautrec',
+            date: '2024 – 2025',
+            description: [
+                'Especialización enfocada en modelos supervisados y no supervisados, pipelines de preprocesamiento y despliegue.'
+            ],
+            technologies: ['Python', 'Scikit-Learn', 'Pandas', 'NumPy', 'MLOps', 'Deep Learning']
+        },
+        {
+            type: 'education',
+            title: 'Técnico en Desarrollo de Sistemas de Información',
+            organization: 'Instituto Sabio Nacional Antúnez de Mayolo',
+            date: '2022 – 2025',
+            description: [
+                'Estudios culminados (Egresado). Formación integral en desarrollo de software y gestión de bases de datos.'
+            ],
+            technologies: ['Java', 'SQL / MySQL', 'Python', 'Desarrollo Web', 'POO', 'Modelamiento de BD']
         }
     ];
 
